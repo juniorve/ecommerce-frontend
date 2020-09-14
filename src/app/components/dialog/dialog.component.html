@@ -1,0 +1,144 @@
+<div [ngBusy]="{busy: maestroService.busy, message: 'Cargando ventas...', backdrop: true}"></div>
+<div *ngIf="data.tipo=='modalShowDetalle'">
+  <div class="header-fac">
+    <h2>Información del Comprobante</h2>
+    <i (click)="onNoClick()" class="btn-cancel" class="fa fa-times btn-cancel" aria-hidden="true"></i>
+  </div>
+  <br><br><br>
+  <div mat-dialog-content>
+    <div class="container-fluid">
+      <div class="row">
+        <p class="info col-sm-1">DNI:</p>
+        <p class="data col-sm-11">{{data.comprobante.dni}}</p>
+        <p class="info col-sm-1">Email:</p>
+        <p class="data col-sm-11">{{data.comprobante.email}}</p>
+        <p class="info col-sm-1">Nombre:</p>
+        <p class="data col-sm-11">{{data.comprobante.nombre}}</p>
+        <p class="info col-sm-1">Fecha:</p>
+        <p class="data col-sm-11">{{data.comprobante.fecha}}</p>
+        <p class="info col-sm-1">Total:</p>
+        <p class="data col-sm-11">S/. {{data.comprobante.total}}</p>
+
+
+        <p class="col-sm-12 text-fact">Detalle del comprobante</p>
+        <p-dataTable #dt columnResizeMode="expand" [resizableColumns]="true" [reorderableColumns]="true"
+          class="col-sm-12" [value]="detalle" [rows]="10" [responsive]="true" [paginator]="true" selectionMode="single">
+          <p-column
+            [style]="{'white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px','text-align':'center','width':'8%'}"
+            field="" header="Número" [sortable]="true">
+            <ng-template let-car="rowData" let-i="rowIndex" pTemplate="body">{{i+1}}</ng-template>
+          </p-column>
+          <p-column [style]="{'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
+            field="nameProducto" header="Producto" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar">
+          </p-column>
+          <p-column [style]="{'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
+            field="color" header="Color" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar">
+          </p-column>
+          <p-column [style]="{'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
+            field="material" header="Material" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar">
+          </p-column>
+          <p-column [style]="{'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
+            field="marca" header="Marca" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar">
+          </p-column>
+          <p-column
+            [style]="{'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px','width':'15%','text-align':'right'}"
+            field="precioCompra" header="Precio compra" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar">
+          </p-column>
+
+          <p-column
+            [style]="{'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px','width':'15%','text-align':'right'}"
+            field="precio" header="Precio venta" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar">
+          </p-column>
+          <p-column
+            [style]="{'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px','width':'15%','text-align':'right'}"
+            field="cantidad" header="Cantidad" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar"></p-column>
+          <p-column
+            [style]="{'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px','width':'15%','text-align':'right'}"
+            field="ganancia" header="Ganancia" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar"></p-column>
+        </p-dataTable>
+        <div class="col-sm-12 content-btn">
+          <button mat-flat-button type="button" class="desc-pdf-cont" (click)="PDF()">
+            <i class="fa fa-download" aria-hidden="true"></i> Imprimir reporte</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="data.tipo=='modalShowSugerencia'">
+  <div class="header-fac">
+    <h2>Información de la queja o sugerencia</h2>
+    <i (click)="onNoClick()" class="btn-cancel" class="fa fa-times btn-cancel" aria-hidden="true"></i>
+  </div>
+  <br><br><br>
+  <div mat-dialog-content>
+    <div class="container-fluid">
+      <div class="row">
+        <p class="info col-sm-2">DNI:</p>
+        <p class="data col-sm-10">{{data.sugerencia.dni}}</p>
+        <p class="info col-sm-2">Nombre:</p>
+        <p class="data col-sm-10">{{data.sugerencia.nombre}}</p>
+        <p class="info col-sm-2">Email:</p>
+        <p class="data col-sm-10">{{data.sugerencia.email}}</p>
+        <p class="info col-sm-2">Descripción:</p>
+        <p class="data col-sm-10">{{data.sugerencia.descripcion}}</p>
+        <p class="info col-sm-2">Celular:</p>
+        <p class="data col-sm-10">{{data.sugerencia.celular}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="data.tipo=='modalShowDetalleDNI'">
+    <div class="header-fac">
+      <h2>Información detallada de la compra</h2>
+      <i (click)="onNoClick()" class="btn-cancel" class="fa fa-times btn-cancel" aria-hidden="true"></i>
+    </div>
+    <br><br><br>
+    <div mat-dialog-content>
+      <div class="container-fluid">
+        <div class="row">
+          <p class="info col-sm-1">DNI:</p>
+          <p class="data col-sm-11">{{data.comprobante.dni}}</p>
+          <p class="info col-sm-1">Email:</p>
+          <p class="data col-sm-11">{{data.comprobante.email}}</p>
+          <p class="info col-sm-1">Fecha:</p>
+          <p class="data col-sm-11">{{data.comprobante.fecha}}</p>
+          <p class="info col-sm-1">Total:</p>
+          <p class="data col-sm-11">S/. {{data.comprobante.total}}</p>
+  
+  
+          <p class="col-sm-12 text-fact">Detalle del comprobante</p>
+          <p-dataTable #dt columnResizeMode="expand" [resizableColumns]="true" [reorderableColumns]="true"
+            class="col-sm-12" [value]="detalle" [rows]="10" [responsive]="true" [paginator]="true" selectionMode="single">
+            <p-column
+              [style]="{'white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px','text-align':'center','width':'8%'}"
+              field="" header="Número" [sortable]="true">
+              <ng-template let-car="rowData" let-i="rowIndex" pTemplate="body">{{i+1}}</ng-template>
+            </p-column>
+            <p-column [style]="{'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
+              field="nameProducto" header="Producto" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar">
+            </p-column>
+            <p-column [style]="{'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
+              field="color" header="Color" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar">
+            </p-column>
+            <p-column [style]="{'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
+              field="material" header="Material" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar">
+            </p-column>
+            <p-column [style]="{'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
+              field="marca" header="Marca" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar">
+            </p-column>
+            <p-column
+              [style]="{'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px','width':'15%','text-align':'right'}"
+              field="precio" header="Precio" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar">
+            </p-column>
+            <p-column
+              [style]="{'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px','width':'15%','text-align':'right'}"
+              field="cantidad" header="Cantidad" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar"></p-column>
+         </p-dataTable>
+          
+        </div>
+      </div>
+    </div>
+  </div>

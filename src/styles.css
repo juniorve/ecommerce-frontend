@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+header{
+    margin-bottom: -100px !important; 
+}
+
+
+    /* ESTILOS PARA LA TABLA  */
+    .mat-dialog-container{
+        padding: 0 !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+      }

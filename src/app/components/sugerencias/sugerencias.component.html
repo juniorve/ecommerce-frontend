@@ -1,0 +1,208 @@
+<div [ngBusy]="{busy: maestroService.busy, message: 'Cargando producto...', backdrop: true}"></div>
+
+<div class="super_container">
+	<header class="header trans_300">
+		<!-- Main Navigation -->
+		<div class="main_nav_container">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-right">
+						<div class="logo_container">
+							<a href="">Ychicawa<span>Shop</span></a>
+						</div>
+						<nav class="navbar">
+							<ul class="navbar_menu">
+								<li><a [routerLink]="['/principal']">Inicio</a></li>
+								<li><a [routerLink]="['/categorias']">Comprar</a></li>
+								<li><a [routerLink]="['/login']">Login</a></li>
+								<li><a [routerLink]="['/register']">Registro</a></li>
+								<!-- <li><a [routerLink]="['/mant-proveedor']">Proveedores</a></li> -->
+								<li><a [routerLink]="['/sugerencias']">Contacto</a></li>
+							</ul>
+							<ul class="navbar_user">
+								<li><a href=""><i class="fa fa-search" aria-hidden="true"></i></a></li>
+								<li><a href=""><i class="fa fa-user" aria-hidden="true"></i></a></li>
+								<li class="checkout">
+									<a href="">
+										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+										<span id="checkout_items" class="checkout_items">2</span>
+									</a>
+								</li>
+							</ul>
+							<div class="hamburger_container">
+								<i class="fa fa-bars" aria-hidden="true"></i>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<!-- <div class="fs_menu_overlay"></div> -->
+
+	<div class="hamburger_menu">
+		<div class="hamburger_close"><i class="fa fa-times" aria-hidden="true"></i></div>
+		<div class="hamburger_menu_content text-right">
+			<ul class="menu_top_nav">
+
+				<li><a [routerLink]="['/principal']">Inicio</a></li>
+				<li><a [routerLink]="['/categorias']">Comprar</a></li>
+				<li><a [routerLink]="['/login']">Login</a></li>
+				<li><a [routerLink]="['/register']">Registro</a></li>
+				<!-- <li><a [routerLink]="['/mant-proveedor']">Proveedores</a></li> -->
+				<li><a [routerLink]="['/sugerencias']">Contacto</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="container contact_container">
+		<div class="row">
+			<div class="col">
+
+				<!-- Breadcrumbs -->
+
+				<div class="breadcrumbs d-flex flex-row align-items-center">
+					<ul>
+						<li><a href="index.html">Inicio</a></li>
+						<li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Quejas y
+								sugerencias</a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+
+
+		<!-- Contact Us -->
+
+		<div class="row">
+
+			<div class="col-lg-6 contact_col">
+				<div class="contact_contents">
+					<h1>Contáctenos</h1>
+					<p>
+						Hay muchas formas de contactarnos. Puede escribirnos una línea, llamarnos o enviarnos un correo
+						electrónico, elegir lo que más le convenga.</p>
+					<div>
+						<p>9656765654</p>
+						<p>ychicawa@gmail.com</p>
+					</div>
+					<div>
+						<p>Horario de atención: 8.00-18.00 de lunes a viernes.</p>
+						<p>Domingo: cerrado</p>
+					</div>
+				</div>
+
+				<!-- Follow Us -->
+
+				<div class="follow_us_contents">
+					<h1>Síguenos</h1>
+					<ul class="social d-flex flex-row">
+						<li><a href="#" style="background-color: #3a61c9"><i class="fa fa-facebook"
+									aria-hidden="true"></i></a></li>
+						<li><a href="#" style="background-color: #41a1f6"><i class="fa fa-twitter"
+									aria-hidden="true"></i></a></li>
+						<!-- <li><a href="#" style="background-color: #fb4343"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li> -->
+						<li><a href="#" style="background-color: #8f6247"><i class="fa fa-instagram"
+									aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+
+			</div>
+
+			<div class="col-lg-6 get_in_touch_col">
+				<div class="get_in_touch_contents">
+					<h1>¡Póngase en contacto con nosotros!</h1>
+					<p>Rellene el siguiente formulario para recibir una información gratuita y confidencial.</p>
+					<form [formGroup]="sugerenciasForm">
+						<div>
+							<input formControlName="dni" id="input_name" class="form_input input_name input_ph"
+								type="text" name="dni" placeholder="Dni" required="required">
+							<input formControlName="nombre" id="input_name" class="form_input input_name input_ph"
+								type="text" name="name" placeholder="Nombre" required="required">
+							<input formControlName="email" id="input_email" class="form_input input_email input_ph"
+								type="email" name="email" placeholder="Email" required="required">
+							<input formControlName="celular" id="input_name" class="form_input input_name input_ph"
+								type="text" name="celular" placeholder="Celular" required="required">
+							<textarea formControlName="descripcion" id="input_message" class="input_ph input_message"
+								name="message" placeholder="Por favor, escriba su sugerencia." rows="3" required
+								data-error="por favor, escriba su mensaje."></textarea>
+						</div>
+						<div>
+							<button id="review_submit" type="submit" class="red_button message_submit_btn trans_300"
+								(click)="saveSugerencia()">Enviar sugerencia</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Newsletter -->
+
+	<!-- Newsletter -->
+
+	<div class="newsletter">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div
+						class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
+						<h4>Para notificarte de nuestras ofertas</h4>
+						<p>Suscribete y se te hara un descuento de 20% en tu primera compra</p>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div
+						class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+						<input id="newsletter_email" type="email" placeholder="tu email" required="required"
+							data-error="Valid email is required.">
+						<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300"
+							value="Submit">suscribete</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div
+						class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
+						<ul class="footer_nav">
+							<li><a href="">Blog</a></li>
+							<li><a href="">FAQs</a></li>
+							<li><a href="contact.html">Contactanos</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div
+						class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
+						<ul>
+							<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+							<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+							<li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							<li><a href=""><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+							<li><a href=""><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="footer_nav_container">
+						<div class="cr">©2019 todos los derechos reservados por Ychicawa </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+</div>

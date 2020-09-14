@@ -1,0 +1,53 @@
+<div [ngBusy]="{busy: maestroService.busy, message: 'Cargando ventas...', backdrop: true}"></div>
+<div class="section-tabla fondo">
+  <br>
+
+  <div class="container todo">
+    <div class="cabecera">
+      <h5>Resumen de compras realizadas</h5>
+    </div>
+    <br>
+    <div class="col-xl-12">
+      <span class="info">A continuación se muestra información acerca de las compras realizadas
+      </span>
+      <p-dataTable [immutable]="false" columnResizeMode="expand" [resizableColumns]="true" class="col-sm-12"
+        [reorderableColumns]="true"
+        [style]="{'overflow-x':'auto !important','max-width':'100% !important','padding':'10px'}" #dt
+        [value]="comprobantes" [rows]="10" [responsive]="true" [paginator]="true" selectionMode="single"
+        [(selection)]="selectedComprobante" (onRowSelect)="onRowSelect($event)">
+        <p-column
+          [style]="{'white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px','text-align':'center','width':'8%'}"
+          field="" header="Número" [sortable]="true">
+          <ng-template let-car="rowData" let-i="rowIndex" pTemplate="body">{{i+1}}</ng-template>
+        </p-column>
+        <p-column
+          [style]="{'white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px','text-align':'center'}"
+          field="dni" header="Dni" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar">
+        </p-column>
+        <p-column
+          [style]="{'white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
+          field="email" header="Email" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar">
+        </p-column>
+        <p-column
+          [style]="{'text-align':'right','white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
+          field="fecha" header="Fecha" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar">
+        </p-column>
+        <p-column
+          [style]="{'text-align':'right','white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
+          field="total" header="Total" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar">
+        </p-column>
+      </p-dataTable>
+    </div>
+    <div class="botones">
+
+      <button mat-button class="btn btnprevious" [routerLink]="['/principal']">
+        <i class="fa fa-chevron-left previous" aria-hidden="true"></i>
+        Regresar Inicio</button>
+
+    </div>
+  </div>
+  <br>
+</div>
+
+<section class="section-tabla" *ngIf="this.cantidad==0">
+</section>

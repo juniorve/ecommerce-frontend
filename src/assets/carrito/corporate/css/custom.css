@@ -1,0 +1,20 @@
+/* here you can put your own css to customize and override the theme */
+.imglogo{
+    height: 65px;
+    width: 160px;
+    margin-top: -20px;
+}
+
+.pi-img-wrapper img{
+    height: 270px;
+}
+
+.menu-op{
+    position: relative;
+    font-size: 18px;
+    color:black;
+    margin-left: 10px;
+    top: 35px !important;
+    text-decoration: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

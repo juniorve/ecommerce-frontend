@@ -1,0 +1,754 @@
+.content-cuentas{
+    display: grid;
+    float: right;
+  /*   margin-top: 75px;
+    margin-right: 90px; */
+    border: 2px solid silver;
+      padding: 10px 28px 1px 26px;
+  }
+  
+  .content-cuentas label {
+    font-weight: 100;
+  }
+  
+  .content-cuentas label span{
+    font-weight: 100;
+  }
+  
+  .btn-save-fact{
+    width: 200px;
+    font-weight: bold;
+  }
+  
+  .container-fluid .data{
+    font-weight: 300;
+  }
+  
+  .pdf-contrato{
+    margin-left: 4px;
+  }
+  
+  .desc-pdf-cont{
+    margin-left: 7px;
+    height: 37px;
+    background: #483D8B;
+  }
+  .pdf-show{
+    margin-left: 6px;
+    margin-right: -1px;
+    background: #483D8B;
+  }
+  .content-btn-fact{
+    text-align: center;
+    width: 100%;
+  }
+  
+  .cont-operation-btn button{
+    height: 37px;
+  }
+  
+  .text-fact{
+    font-style: italic;
+    color: #444;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .btn-send-moras{
+    margin-top: 15px;
+    background: rgb(64, 142, 171, 0.9);
+    color: white;
+    font-weight: bold;
+  }
+  
+  .btn-send-moras:hover{
+    background: rgb(64, 142, 171, 1);
+  }
+  
+  
+  .icon-pay-moraC{
+  font-size: 24px;
+  margin-top: -3px;
+  margin-right: 2px;
+  }
+  
+  .btn-pay-moraC{
+    margin-top: 30px;
+    background: rgba(49, 102, 121, 0.9);
+    color: white;
+    font-weight: bold;
+  }
+  .btn-pay-moraC:hover{
+    background: rgb(49, 102, 121, 1);
+  }
+  
+  .i-moras{
+    font-size: 23px;
+    margin-right: 2px;
+  }
+  
+  .header, .header-sp, .header-op,.header-tesoreria, .header-fac,.header-list-ap{
+    background-color: #483D8B;
+    color: white;
+    /* margin-left: -24px; */
+    /* margin-right: -24px; */
+    height: 60px;
+    /* margin-bottom: 12px; */
+    /* margin-top: -24px; */
+    /* position: fixed; */
+    /* z-index: 3; */
+    /* border: 2px solid red; */
+    margin-top: -1px;
+    padding-top: 5px !important;
+  }
+  
+  .btn-generate {
+    margin-top: 10px;
+    background-color: rgb(50, 123, 137, 0.9);
+    color: white;
+  }
+  
+  .btn-generate:hover{
+    background-color: rgb(50, 123, 137, 1);
+  }
+  
+  .i-arrow{
+    font-size: 25px;
+    margin-top: -3px;
+  }
+  
+  .save-icon{
+    font-size: 19px;
+    margin-top: 4px;
+  }
+  
+  .content-reinverir, .check-reci{
+    text-align: center;
+    margin: 5px 0;
+  }
+  
+  .content-daysContrato{
+    padding: 0px 40px;
+  }
+  
+  .btn-add{
+    background-color: cadetblue;
+    color: white;
+    box-shadow: 3px 3px 3px silver;
+    width: 160px;
+    margin-left: 7px;
+    /* border-radius: 50px; */
+    margin-bottom: 20px;
+  }
+  
+  .ui-button-warning{
+    background: #9EBECD !important;
+    border-color: #9EBECD !important;
+  }
+  
+  .ui-button-warning:hover{
+    background: #92B5C5 !important;
+  }
+  
+  .content-reinverir button{
+    font-weight: bold;
+  }
+  
+  .btn-cancelar{
+    background-color: rgb(95, 36, 16, 0.9);
+    color: white;
+    box-shadow: 3px 3px 3px silver;
+    margin-left: 7px;
+    margin-top: 12px;
+    font-size: 15px;
+  }
+  
+  .btn-cancelar:hover{
+    background-color: rgb(95, 36, 16, 1);
+  }
+  
+  .btn-saveTasa{
+    background-color: rgb(56, 11, 97);
+    color: white;
+    box-shadow: 3px 3px 3px silver;
+    margin-left: 7px;
+    margin-top: 12px;
+  }
+  
+  .btn-saveTasa{
+    background-color: rgb(56, 11, 97, 1);
+  }
+  
+  .header-op{
+    height: 60px !important;
+    font-size: 23px;
+    width: 620px;
+    margin-top: -8px;
+  }
+  
+  .content-update {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .content-update-comi {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .pdf-par{
+    background: #008B8B;
+    margin-right: 5px;
+    color: white;
+  }
+  
+  .pdf-par i{
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .content-update-par{
+    text-align: center;
+  }
+  .content-update-par button{
+    height: 37px;
+  }
+  
+  .header{
+    width: 500px;
+    color: #444 !important;
+  }
+  
+  .header-telf{
+    background-color: #483D8B;
+    color: white;
+    height: 47px;
+    margin-top: -8px;
+  }
+  
+  .content-btn-telf{
+    text-align: center !important;
+    display: inherit !important;
+  }
+  
+  .header-telf h2{
+    padding-top: 10px;
+    font-weight: bold;
+    margin-top: 8px;
+    padding-left: 10px;
+    font-size: 23px;
+  }
+  
+  .content-telefono{
+    margin-top: 14px !important;
+    margin-left: -10px;
+  }
+  
+  .content-aprob-fondo button{
+    margin-top: 9px;
+  }
+  
+  .btn-next-comisionista{
+    background-color: rgb(95, 158, 160, 0.9);
+    color: white;
+    font-weight: bold;
+  }
+  
+  .content-aprob-fondo mat-form-field{
+    margin-right: 15px;
+  }
+  
+  .contrato-tex .info{
+    font-weight: bold;
+  }
+  
+  .contrato-tex .data{
+    font-weight: 100;
+  }
+  /* .header-tesoreria, .header-fac{
+    width: 1100px;
+  } */
+  
+  .contenido-aporte .info{
+    font-weight: bold;
+  }
+  
+  .tesoreria-text p{
+    font-weight: 100;
+    margin-right: 3px;
+  }
+  
+  .content-aprob-fondo i{
+    font-size: 23px;
+  }
+  
+  .content-update i{
+    font-size: 23px;
+  }
+  .content-update .desc-pdf, .content-update .desc-pdf1{
+    height: 37px;
+    font-weight: bold;
+  }
+  
+  .desc-pdf1{
+    margin-right: 4px;
+    background: rgb(27, 36, 128) !important;
+  }
+  
+  .btn-liquidate, .btn-aprob-fondo{
+    background-color: rgb(43, 118, 164) !important;
+    font-weight: bold;
+    color: white;
+  }
+  .btn-liquidate:hover, .btn-aprob-fondo:hover{
+    background-color: rgb(17, 83, 124) !important;
+  }
+  
+  .background-red{
+    color: #7A3715
+  }
+  
+  .background-blue{
+    color:#0A3B6A
+  }
+  
+  .tesoreria-text .info{
+    font-weight: bold;
+  }
+  
+    /* ESTILOS PARA LA TABLA  */
+   .mat-dialog-container{
+    padding: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+  
+  .content-fact{
+    padding: 0 52px;
+  }
+  .desc-pdf-cont{
+    margin-left: 7px;
+    height: 37px;
+    background: #483D8B;
+  }
+  .content-btn{
+    margin-top: 15px;
+    text-align: center;
+  }
+  /* .content-update button {
+    height: 35px;
+  } */
+  .content-comi{
+    padding: 0 35px;
+  }
+  
+  .mat-dialog-content{
+      max-height: none;
+      margin-top: -43px;
+      margin-bottom: 20px
+    }
+  
+    .content-list-ap,.content-list-tesoreria{
+      padding: 0 45px;
+    }
+  
+  .ui-datatable{
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    padding: 4px !important;
+    float: left;
+  }
+  
+  .ui-datatable-data td,.ui-datatable .ui-datatable-thead > tr > th{
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  padding: 5px !important;
+  margin: -5px !important;
+  font-family: Arimo,sans-serif  !important;
+  font-size: 12px !important;
+  }
+    /* /ESTILOS PARA LA TABLA  */
+  
+  .header h2, .header-sp h2, .header-tesoreria h2, .header-fac h2, .header-op h2, .header-list-ap h2{
+    padding-top: 10px;
+    font-weight: bold;
+    margin-top: 1px;
+    padding-left: 10px;
+    color: white;
+    font-size:25px !important;
+  }
+  
+  .header-list-ap{
+    text-align: center;
+  }
+  
+  .header-op h2{
+    padding-top: 10px;
+    font-weight: bold;
+    margin-top: 8px;
+    padding-left: 10px;
+  }
+  
+  .img-options{
+    height: 25px;
+    margin-top: -8px;
+    width: 25px;
+  }
+  
+  .content-btn-rep{
+    text-align: center;
+  }
+  .text-rep{
+    color: rgb(100, 98, 98);
+    margin-bottom: 15px;
+  }
+  
+  .content-rep{
+    padding: 0px 45px;
+  }
+  
+  .btn-show{
+    margin-top: 10px;
+  }
+  
+  .contenido-fondo .data{
+    font-weight: 200;
+  }
+  .icon-search{
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  
+  
+  .info{
+    font-weight: bold;
+  }
+  
+  .content-btn{
+    text-align: center;
+    width: 100%;
+  }
+  
+  .btn-selection{
+    margin-left: 7px;
+  }
+  
+  .change{
+    margin-top: 18px;
+  }
+  
+  .btn-cancel{
+      float: right;
+      margin-top: -39px;
+      font-size: 28px;
+      margin-right: 10px;
+      cursor: pointer;
+      color: white;
+  }
+  
+  
+  .btn-delete,.btn-fact-comi,.btn-edit,.btn-fact-int,.btn-reprogramar{
+    margin-left:8px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .icon-rep{
+    font-size: 25px;
+  }
+  
+  .btn-delete{
+    background: rgb(128,0,0,0.9);
+  }
+  
+  .btn-reprogramar{
+    background: rgb(88, 146, 182);
+  }
+  
+  .btn-fact-comi{
+    background: rgb(72,61,139,0.9);
+  }
+  
+  .btn-fact-comi{
+    background: rgb(72,61,139,1.0);
+  }
+  
+  .btn-fact-int{
+    background: rgb(22, 107, 144, 0.9);
+  }
+  
+  .btn-fact-int{
+    background: rgb(22, 107, 144,1.0);
+  }
+  
+  .btn-aprobate{
+    margin-left: 5px;
+    background: rgb(22, 107, 144, 0.9);
+    color: white;
+  }
+  
+  .btn-aprobate:hover{
+    background: rgb(22, 107, 144,1);
+  }
+  
+  
+  .btn-delete:hover{
+    background: rgb(128,0,0,1.0);
+  }
+  
+  .btn-edit{
+    background: rgba(69, 83, 100, 0.9);
+  }
+  
+  .btn-edit:hover{
+    background: rgba(69, 83, 100, 1);
+  
+  }
+  
+  
+  /* SUBIDA DE ARCHIVOS */
+  .nameArchivo{
+    margin-top: 7px;
+  }
+  
+  .info-file{
+    margin-bottom: 10px;
+  }
+  
+  .btn-up-file{
+    margin-top: 8px;
+    height: 37px;
+  }
+  
+  
+  /* para la tabla tesoreria */
+  
+  
+  
+  /*Nuevos estilos*/
+  
+  .btn_add{
+    background: rgb(70,130,180,0.9);
+    color:white;
+    margin-right: 3px;
+  
+  }
+  .btn_add:hover{
+    background: rgb(70,130,180,1);
+  }
+  
+  .btn_edit{
+    background: rgb(169,169,169,0.9);
+    color:white;
+  
+  }
+  .btn_edit:hover{
+    background: rgb(169,169,169,1);
+  }
+  
+  .btn_delete{
+    background: rgb(165,42,42,0.9);
+    color:white;
+  
+  }
+  .btn_delete:hover{
+    background: rgb(165,42,42,1);
+  }
+  
+  
+  .btn_plantilla{
+    background: rgb(100,149,237,0.9);
+    color:white;
+  
+  }
+  .btn_plantilla:hover{
+    background: rgb(100,149,237,1);
+  }
+  
+  .todo{
+    padding-bottom: 20px;
+    margin: 0 auto;
+    box-shadow: 2px 2px 2px 2px silver;
+  }
+  
+  .cabecera{
+    background: linear-gradient(to right,#008B8B,#20B2AA, #48D1CC );
+    color:white;
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    box-shadow: 2.5px 2.5px 2.5px 0px silver;
+  }
+  
+  .cabecera h5{
+    margin-left: 10px;
+  }
+  
+  .opciones{
+    margin-bottom: 20px;
+  }
+  
+  .theader{
+    background: lightslategray;
+    color: white;
+    box-shadow: 2px 2px 2px 2px
+  }
+  
+  .siguiente{
+    background: rgb(119,136,153);
+    color:white;
+    font-weight: bold;
+    font-size: 15px;
+    width: 150px;
+  }
+  
+  
+  .siguiente:hover{
+    background: rgb(112,128,144);
+  }
+  
+  .color{
+    background: #F0F8FF;
+  }
+  
+  .iconos{
+    float: right;
+    margin-bottom: 10px;
+   font-weight: bold;
+   margin-top: 3px;
+  }
+  
+  .lapiz, .delete, .plus{
+    height: 18px;
+    width: 18px;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  
+  .iconplus{
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .formFact p{
+    font-weight: 100;
+  }
+  
+  p{
+    font-weight: bold;
+  }
+  
+  .content-cuentas label{
+    float: right;
+    margin-left: 40px;
+  }
+  
+  .client{
+    display: flex;
+    margin-bottom: 10px;
+  }
+  .client-fact{
+    font-weight: bold !important;
+    color: gray;
+    font-style: italic;
+  }
+  
+  .name-cliente-fact{
+    font-weight: 100 !important;
+    margin-left: 3px;
+  }
+  
+  .text-list{
+    margin-top: 20px;
+    /* float: right; */
+    color:rgb(100, 98, 98);
+  }
+  
+  .detalle{
+    box-shadow: 3px 3px 3px silver;
+    background-color: #B0C4DE;
+    color: white;
+    height: 33px;
+    margin-top: 10px;
+    padding-top: 6px;
+  }
+  
+  .info{
+    font-size: 15px;
+    color: #444;
+    font-style: italic;
+  }
+  
+  .lista{
+    margin-bottom: -10px;
+  }
+  
+  .content-tarifa .data{
+    font-weight: 300;
+  }
+  .icon-contrato{
+    font-size: 25px
+  }
+  .btn-contrato{
+    font-weight: bold;
+    background: lightblue;
+    color: white;
+  }
+  
+  .content-resc .data{
+    font-weight: 300;
+  }
+  .content-trans .data{
+    font-weight: 300;
+  }
+  .btnprevious{
+    background: rgb(119,136,153,0.9);
+    margin-right: 3px;
+  }
+  
+  .btnprevious:hover{
+  background: rgb(119,136,153,1);
+  color: white;
+  }
+  
+  p-datatable{
+    max-width: 100%;
+  }
+  
+  .text-contrato,.text-fact{
+    color: gray;
+    margin-top: 10px;
+    font-weight: bold !important;
+    font-style: italic;
+    text-decoration: underline;
+  }
+  
+
+  
+
+ /* ESTILOS PARA LA TABLA  */
+ .ui-datatable{
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  padding: 4px !important;
+  float: left;
+}
+
+.ui-datatable-data td,.ui-datatable .ui-datatable-thead > tr > th{
+white-space: nowrap !important;
+overflow: hidden !important;
+text-overflow: ellipsis !important;
+padding: 5px !important;
+margin: -5px !important;
+font-family: Arimo,sans-serif  !important;
+font-size: 12px !important;
+}
+
+p-datatable{
+  max-width: 100%;
+  min-width: 100%;
+  display: flex;
+}
+  /* /ESTILOS PARA LA TABLA  */

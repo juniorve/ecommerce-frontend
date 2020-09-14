@@ -1,0 +1,178 @@
+/* .texto{
+	padding-left: 1.2em;
+}
+
+.title{
+    min-height: 130px;
+    display: block;
+    padding-top: 40px;
+    background-color:   #19b4b2;
+    margin: 0 auto;
+	text-align: center;
+}
+
+h2{
+	color: white;
+}
+.section{
+	background-color: white;
+	padding: 0.7em;
+}
+
+.container{
+	background-color: white;
+	box-shadow: 1px 1px 1px 1px  silver;
+	padding: 0px;
+}
+
+.contenedor{
+	background-color: white;
+}
+
+a:hover{
+	color: black;
+}
+
+.desafio{
+	color: #088A85;
+	font-family: arial,helvetica;
+	font-size: 25px;
+}
+
+.tiempo{
+	color: gray;
+	text-decoration: none;
+}
+
+.enlace{
+	cursor: pointer;
+}
+
+.desafio:hover{
+	color: #5F9EA0;
+}
+
+img{
+	width: 100%;
+	min-height: 220px;
+	max-height: 260px;
+	cursor:pointer;
+}
+
+.titulo{
+	text-align: center;
+}
+h2{
+	text-align: center;
+}
+
+
+ */
+
+
+
+
+
+
+
+.card-text{
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: justify;
+}
+
+section{
+	background: white !important;
+}
+.item:hover{
+	background: gray; 
+  }
+
+ a{
+ 	cursor: pointer;
+}
+.parrafo{
+	padding-left: 6px !important;
+}
+
+.img-prop{
+ 	cursor: pointer;
+	width: 100%;
+	height: 300px;
+	/* max-height: 240px;  */
+	margin: auto;
+}
+
+i{
+	cursor: pointer;
+}
+
+.portfolio-caption{
+	width: 100%;
+}
+
+.titulo-a{
+	color: gray !important;
+    text-decoration: underline;
+    margin-bottom: 27px;
+}
+	
+.todo{
+	box-shadow: 1px 1px 1px 1px silver; 
+}
+
+
+@media (min-width: 544px)  and (max-width: 767px) {
+	.parrafo{
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	  }
+	 }
+ 
+
+  .icon{
+	  float: right;
+	  margin-top: 5px;
+  }
+ 
+  .corazon{
+	  margin-right: 4px;
+  }
+
+  .img-user-prop{
+	  float: left;
+	  height: 40px;
+	  width: 40px;
+	  border-radius: 50%;
+  }
+
+  .name-user-prop{
+	  float: left;
+	  margin-left: 7px;
+	  margin-top: 5px;
+	  color: gray;
+	  font-weight: bold;
+  }
+
+  .usuario{
+	  position: absolute;
+	  width: 97.5%;
+	  padding: 0 5px;
+	  right: 5px;
+	  bottom: 5px;
+  }
+
+  .prop-title{
+	  margin-top: -20px;
+	  font-weight: bold;
+	  color: #20B2AA;
+  }
+ 
+  .prop-title:hover{
+	text-decoration: underline;
+}
+
+  .posicion{
+	  position: relative;
+  }
