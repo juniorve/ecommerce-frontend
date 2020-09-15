@@ -24,7 +24,7 @@
 
               <div class="col-xs-12 col-md-6">
                 <mat-form-field class="texto" appearance="outline">
-                  <mat-label>Seleccione tipo de prenda</mat-label>
+                  <mat-label>Seleccione tipo de producto</mat-label>
                   <mat-select name="tipo" [(ngModel)]="proveedor.tipo" [formControl]="tipoControl" required>
                     <mat-option *ngFor="let tipo of tipos" [value]="tipo._id">
                       {{tipo.descripcion}}
