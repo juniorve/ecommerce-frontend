@@ -19,9 +19,9 @@
               <!--========== CARRITO ============-->
               <div class="top-cart-block">
                 <div class="top-cart-info">
-                  <a href="javascript:void(0);" class="top-cart-info-count">{{maestroService.carritoProd.length}}
+                  <a class="top-cart-info-count">{{maestroService.carritoProd.length}}
                     productos</a>
-                  <a href="javascript:void(0);" *ngIf="maestroService.carritoProd.length>0"
+                  <a *ngIf="maestroService.carritoProd.length>0"
                     class="top-cart-info-value">S/. {{maestroService.sumaTotal}}</a>
                 </div>
                 <i class="fa fa-shopping-cart"></i>
@@ -30,12 +30,12 @@
                   <div class="top-cart-content">
                     <ul class="scroller" style="height: 250px;">
                       <li *ngFor="let producto of maestroService.carritoProd">
-                        <a href="shop-item.html"><img src="{{url+'get-img-producto/'+producto.imagen}}"
+                        <a ><img src="{{url+'get-img-producto/'+producto.imagen}}"
                             alt="Rolex Classic Watch" width="37" height="34"></a>
                         <span class="cart-content-count">x {{producto.cantidadCarrito}}</span>
-                        <strong><a href="shop-item.html">{{producto.nombre}}</a></strong>
+                        <strong><a >{{producto.nombre}}</a></strong>
                         <em>S/. {{producto.precioVenta * producto.cantidadCarrito}}</em>
-                        <!-- <a href="javascript:void(0);" class="del-goods">&nbsp;</a> -->
+                        <!-- <a class="del-goods">&nbsp;</a> -->
                       </li>
 
                     </ul>
@@ -75,10 +75,10 @@
                 </tr>
                 <tr *ngFor="let producto of maestroService.carritoProd">
                   <td class="goods-page-image">
-                    <a href="javascript:;"><img src="{{url+'get-img-producto/'+producto.imagen}}" alt="Berry Lace Dress"></a>
+                    <a ><img src="{{url+'get-img-producto/'+producto.imagen}}" alt="Berry Lace Dress"></a>
                   </td>
                   <td class="goods-page-description">
-                    <h3><a href="javascript:;">{{producto.nombre}}</a></h3>
+                    <h3><a >{{producto.nombre}}</a></h3>
                     <p><strong>- Material: {{producto.material}}</strong></p>
                     <!-- <em>Más información</em> -->
                   </td>
@@ -97,7 +97,7 @@
                     <strong><span>S/. </span>{{producto.precioVenta * producto.cantidadCarrito}}</strong>
                   </td>
                   <td class="del-goods-col">
-                    <a class="del-goods" href="javascript:;">&nbsp;</a>
+                    <a class="del-goods">&nbsp;</a>
                   </td>
                 </tr>
               </table>
