@@ -7,7 +7,7 @@ import { MaterialModule } from './shared/modules/material.module';
 import { routing, appRoutingProviders } from './app.routing';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -31,17 +31,20 @@ import { CarritoComponent } from './components/carrito/carrito.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { ShowProductoComponent } from './components/show-producto/show-producto.component';
 import { PagarTotalComponent } from './components/pagar-total/pagar-total.component';
-import {NgBusyModule} from 'ng-busy';
+import { NgBusyModule } from 'ng-busy';
 import { SugerenciasComponent } from './components/sugerencias/sugerencias.component';
 import { MAT_DATE_LOCALE } from '@angular/material';
 
- import {DataTableModule} from 'primeng/datatable';
+import { DataTableModule } from 'primeng/datatable';
 // import {TableModule} from 'primeng/table';
-import {  DropdownModule } from 'primeng/primeng';
+import { DropdownModule } from 'primeng/primeng';
 import { VentasComponent } from './components/ingresos/ventas/ventas.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ListSugerenciasComponent } from './components/list-sugerencias/list-sugerencias.component';
 import { ComprasComponent } from './components/compras/compras.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +79,9 @@ import { ComprasComponent } from './components/compras/compras.component';
   ],
   imports: [
     FormsModule,
-     MaterialModule,DataTableModule,DropdownModule,
+    MaterialModule,
+    DataTableModule,
+    DropdownModule,
     HttpModule,
     BrowserAnimationsModule,
     // BrowserModule,
@@ -84,14 +89,21 @@ import { ComprasComponent } from './components/compras/compras.component';
     OverlayModule, ReactiveFormsModule,
 
     // BUSY
-    NgBusyModule
+    NgBusyModule,
+    NgxSpinnerModule
     // ProveedorModule
   ],
-  entryComponents:[DialogComponent],
-  providers: [appRoutingProviders,
-  MaestroService,
-  {provide: MAT_DATE_LOCALE, useValue: 'es-Pe'},
-],
+  entryComponents: [DialogComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerInterceptor,
+      multi: true,
+    },
+    appRoutingProviders,
+    MaestroService,
+    { provide: MAT_DATE_LOCALE, useValue: 'es-Pe' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

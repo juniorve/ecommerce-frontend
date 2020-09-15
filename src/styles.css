@@ -6,12 +6,13 @@ header{
 }
 
 
-    /* ESTILOS PARA LA TABLA  */
-    .mat-dialog-container{
-        padding: 0 !important;
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-      }
-input{
+/* ESTILOS PARA LA TABLA  */
+.mat-dialog-container{
+    padding: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+mat-form-field input{
     border:none !important;
 }

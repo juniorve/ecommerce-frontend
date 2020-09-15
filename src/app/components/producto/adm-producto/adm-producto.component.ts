@@ -26,6 +26,7 @@ export class AdmProductoComponent implements OnInit, OnDestroy {
   public band_editar: boolean;
   public productos: Producto[] = [];
   public _idEvento: String;
+  public cantidad: any = 0;
   constructor(
     private _productoService: ProductoService, private _route: ActivatedRoute, private maestroService: MaestroService,
     private _router: Router,
@@ -43,7 +44,6 @@ export class AdmProductoComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.unsubscribe();
   }
 
-  public cantidad: any = 0;
   getProductos() {
     this.maestroService.busy = this._productoService.getProductos(this.token, this.identity._id).pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(
@@ -74,7 +74,8 @@ export class AdmProductoComponent implements OnInit, OnDestroy {
     })
       .then((deleteProd) => {
         if (deleteProd) {
-        this.maestroService.busy=this._productoService.deleteProducto(this.token, idProducto).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+          this.maestroService.busy = 
+          this._productoService.deleteProducto(this.token, idProducto).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
             response => {
               if (!response.producto) {
                 swal('Error', 'El producto no se elimino correctamente', 'warning');

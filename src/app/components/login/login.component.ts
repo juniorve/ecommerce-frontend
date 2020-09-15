@@ -1,3 +1,4 @@
+import { MaestroService } from './../../services/maestro-service.service';
 import { ProductoService } from './../../services/producto.service';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
@@ -22,7 +23,9 @@ export class LoginComponent implements OnInit {
   public token;
 
   constructor(private _userService: UserService, private _route: ActivatedRoute, private _productoService: ProductoService,
-    private _router: Router) {
+    private _router: Router,
+    public maestroService: MaestroService
+  ) {
 
     this.user = new User(null, '', '', '', '', '', '', '', '', '');
   }
@@ -62,7 +65,7 @@ export class LoginComponent implements OnInit {
     console.log(this.user);
 
     // conseguir los datos del usuario identificado
-    this._userService.loginUser(this.user).subscribe(
+    this.maestroService.busy = this._userService.loginUser(this.user).subscribe(
       response => {
         let identity = response.user;
         this.identity = identity;
