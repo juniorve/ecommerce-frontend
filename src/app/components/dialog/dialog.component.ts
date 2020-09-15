@@ -12,7 +12,7 @@ import { ProductoService } from '../../services/producto.service';
 // import * as autoTable from 'jspdf-autotable'
 import * as jsPDF from 'jspdf';
 // import * as autoTable from 'jspdf-autotable';
-require('jspdf-autotable'); 
+require('jspdf-autotable');
 /* var jsPDF = require('jspdf');
 require('jspdf-autotable'); */
 @Component({

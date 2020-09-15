@@ -10,7 +10,8 @@ import { takeUntil } from 'rxjs/operators';
 import { ComprobanteService } from '../../services/comprobante.service';
 import * as jsPDF from 'jspdf';
 /* var jsPDF = require('jspdf'); */
-import * as autoTable from 'jspdf-autotable';
+// import * as autoTable from 'jspdf-autotable';
+require('jspdf-autotable');
 @Component({
   selector: 'app-pagar-total',
   templateUrl: './pagar-total.component.html',
