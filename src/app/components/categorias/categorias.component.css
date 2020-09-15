@@ -11,6 +11,9 @@
     margin-top: 40px;
 } */
 
+.product_name{
+	cursor: pointer;
+}
 .red_button:hover
 {
     background: rgb(236, 49, 52) !important;
