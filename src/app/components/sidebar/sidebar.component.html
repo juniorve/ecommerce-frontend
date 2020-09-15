@@ -16,8 +16,8 @@
         </div>
         <div class="user-info">
           <span class="name_user nombreu">{{identity.name}}</span>
-          <span *ngIf="identity.role=='ROLE_ADMIN'" class="user-role">Administrador</span>
-          <span *ngIf="identity.role=='ROLE_USER'" class="user-role">Usuario</span>
+          <span *ngIf="identity && identity.role=='ROLE_ADMIN'" class="user-role">Administrador</span>
+          <span *ngIf="identity && identity.role=='ROLE_USER'" class="user-role">Usuario</span>
           <span class="user-status">
             <i class="fa fa-circle"></i>
             <span>Online</span>
@@ -37,28 +37,28 @@
 
       <div class="sidebar-menu">
         <ul>
-          <li class="header-menu" *ngIf="identity.role=='ROLE_ADMIN'">
+          <li class="header-menu" *ngIf="identity && identity.role=='ROLE_ADMIN'">
             <span>Proveedor</span>
           </li>
-      <!--     <li class="option" *ngIf="identity.role=='ROLE_ADMIN'">
+      <!--     <li class="option" *ngIf="identity && identity.role=='ROLE_ADMIN'">
             <a class="res_add" [routerLink]="['/list-proveedor']">
               <i class="fa fa-dashboard"></i>
               <span>Inicio</span>
             </a>
           </li> -->
-          <li class="option" *ngIf="identity.role=='ROLE_ADMIN'">
+          <li class="option" *ngIf="identity && identity.role=='ROLE_ADMIN'">
             <a class="res_add" [routerLink]="['/list-proveedor']">
               <i class="fa fa-list" aria-hidden="true"></i>
               <span>Proveedores</span>
             </a>
           </li>
-          <li class="option" *ngIf="identity.role=='ROLE_ADMIN'">
+          <li class="option" *ngIf="identity && identity.role=='ROLE_ADMIN'">
             <a class="res_add" [routerLink]="['/new-proveedor']">
               <i class="fa fa-plus"></i>
               <span>Nuevo Proveedor</span>
             </a>
           </li>
-          <li class="res_add" *ngIf="identity.role=='ROLE_ADMIN'">
+          <li class="res_add" *ngIf="identity && identity.role=='ROLE_ADMIN'">
             <a [routerLink]="['/mant-proveedor']">
               <i class="fa fa-cog"></i>
               <span>Mantenimiento</span>
@@ -70,22 +70,22 @@
                             <span>Maps</span>
                         </a>
                     </li> -->
-                    <li class="header-menu" *ngIf="identity.role=='ROLE_ADMIN'">
+                    <li class="header-menu" *ngIf="identity && identity.role=='ROLE_ADMIN'">
                       <span>Productos</span>
                     </li>
                     <li class="res_add" >
-                      <a [routerLink]="['/list-producto']" *ngIf="identity.role=='ROLE_ADMIN'">
+                      <a [routerLink]="['/list-producto']" *ngIf="identity && identity.role=='ROLE_ADMIN'">
                         <i class="fa fa-list"></i>
                         <span>Lista Productos</span>
                       </a>
                     </li>
-                    <li class="res_add" *ngIf="identity.role=='ROLE_ADMIN'">
+                    <li class="res_add" *ngIf="identity && identity.role=='ROLE_ADMIN'">
                       <a [routerLink]="['/new-producto']">
                         <i class="fa fa-plus"></i>
                         <span>Nuevo Producto</span>
                       </a>
                     </li>
-                    <li class="res_add" *ngIf="identity.role=='ROLE_ADMIN'">
+                    <li class="res_add" *ngIf="identity && identity.role=='ROLE_ADMIN'">
                       <a [routerLink]="['/adm-producto']">
                         <i class="fa fa-cog"></i>
                         <span>Administración</span>
@@ -94,26 +94,26 @@
                     <li class="header-menu">
                         <span>Resumen</span>
                       </li>
-                      <li class="res_add" *ngIf="identity.role=='ROLE_ADMIN'">
+                      <li class="res_add" *ngIf="identity && identity.role=='ROLE_ADMIN'">
                         <a [routerLink]="['/ventas']">
                           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                           <span>Ventas</span>
                         </a>
                       </li>
 
-                      <li class="res_add" *ngIf="identity.role=='ROLE_USER'">
+                      <li class="res_add" *ngIf="identity && identity.role=='ROLE_USER'">
                           <a [routerLink]="['/compras']">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             <span>Compras realizadas</span>
                           </a>
                         </li>
-                     <!--  <li class="res_add" *ngIf="identity.role=='ROLE_ADMIN'">
+                     <!--  <li class="res_add" *ngIf="identity && identity.role=='ROLE_ADMIN'">
                         <a [routerLink]="['/ganancias']">
                           <i class="fa fa-list"></i>
                           <span>Ganancias</span>
                         </a>
                       </li> -->
-                      <li class="res_add" *ngIf="identity.role=='ROLE_ADMIN'">
+                      <li class="res_add" *ngIf="identity && identity.role=='ROLE_ADMIN'">
                         <a [routerLink]="['/list-sugerencias']">
                           <i class="fa fa-list"></i>
                           <span>Quejas y sugerencias</span>

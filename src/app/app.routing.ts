@@ -25,26 +25,26 @@ import { SugerenciasComponent } from './components/sugerencias/sugerencias.compo
 import { ComprasComponent } from './components/compras/compras.component';
 
 const appRoutes: Routes = [
-    {
+  {
     path: '',
     component: SidebarComponent,
     children: [
-      {path:'edit-proveedor/:id', component: EditProveedorComponent},
-      {path:'mant-proveedor', component: MantProveedorComponent},
-      {path:'new-proveedor', component: NewProveedorComponent},
-      {path:'list-proveedor', component: ListProveedorComponent},
-      {path:'view-proveedor/:id', component: ViewProveedorComponent},
+      { path: 'edit-proveedor/:id', component: EditProveedorComponent },
+      { path: 'mant-proveedor', component: MantProveedorComponent },
+      { path: 'new-proveedor', component: NewProveedorComponent },
+      { path: 'list-proveedor', component: ListProveedorComponent },
+      { path: 'view-proveedor/:id', component: ViewProveedorComponent },
       //resumen
-      {path:'ganancias', component: GanananciasComponent},
-      {path:'ventas', component: VentasComponent},
-      {path:'list-sugerencias', component: ListSugerenciasComponent},
+      { path: 'ganancias', component: GanananciasComponent },
+      { path: 'ventas', component: VentasComponent },
+      { path: 'list-sugerencias', component: ListSugerenciasComponent },
       //productos
-      {path:'adm-producto', component: AdmProductoComponent},
-      {path:'edit-producto/:id', component: EditProductoComponent},
-      {path:'new-producto', component: NewProductoComponent},
-      {path:'list-producto', component: ListProductoComponent},
+      { path: 'adm-producto', component: AdmProductoComponent },
+      { path: 'edit-producto/:id', component: EditProductoComponent },
+      { path: 'new-producto', component: NewProductoComponent },
+      { path: 'list-producto', component: ListProductoComponent },
       { path: 'compras', component: ComprasComponent }
-     ]
+    ]
   },
   { path: 'categorias', component: CategoriasComponent },
   // { path: '', component: PrincipalComponent },
