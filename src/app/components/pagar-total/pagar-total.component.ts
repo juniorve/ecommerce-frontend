@@ -8,10 +8,16 @@ import { Subject } from 'rxjs/Subject';
 import swal from 'sweetalert';
 import { takeUntil } from 'rxjs/operators';
 import { ComprobanteService } from '../../services/comprobante.service';
-import * as jsPDF from 'jspdf';
+// import * as jsPDF from 'jspdf';
 /* var jsPDF = require('jspdf'); */
 // import * as autoTable from 'jspdf-autotable';
-require('jspdf-autotable');
+// require('jspdf-autotable');
+declare var jsPDF: any;
+import {
+  IPayPalConfig,
+  ICreateOrderRequest
+} from 'ngx-paypal';
+
 @Component({
   selector: 'app-pagar-total',
   templateUrl: './pagar-total.component.html',
@@ -20,6 +26,7 @@ require('jspdf-autotable');
 })
 export class PagarTotalComponent implements OnInit, OnDestroy {
   public totalForm: FormGroup;
+  public payPalConfig?: IPayPalConfig;
   envios = [
     { name: 'Si' },
     { name: 'No' },
@@ -49,6 +56,8 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
         this.totalForm.controls['total'].setValue(parseFloat(params['total']));
       }
     });
+
+    this.initConfig();
   }
 
   ngOnDestroy() {
@@ -56,8 +65,95 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.unsubscribe();
   }
 
+  initConfig(): void {
+    this.payPalConfig = {
+      currency: 'USD',
+      clientId: 'ATqUdLfwin80JOsDMIgcz-0gpP-apY9lcBZFmomxuH_CAw0sQDO9SLjgnDgeBHNVcPvyJF4mx1LHZ5Xh',
+      createOrderOnClient: (data) => <ICreateOrderRequest>{
+        intent: 'CAPTURE',
+        purchase_units: [{
+          /*       amount: {
+                  currency_code: 'USD',
+                  value: '9.99',
+                  breakdown: {
+                    item_total: {
+                      currency_code: 'USD',
+                      value: '9.99'
+                    }
+                  }
+                }, */
+          amount: {
+            currency_code: 'USD',
+            value: '8.00',
+            breakdown: {
+              item_total: {
+                currency_code: 'USD',
+                value: '8.00'
+              }
+            }
+          },
+          items: this.maestroService.carritoProd.map((value: any) => {
+            return {
+              name: value.nombre,
+              quantity: value.cantidadCarrito,
+              category: value.tipo,
+              unit_amount: {
+                currency_code: 'USD',
+                value: '8.00',
+              }
+            };
+          })
+          /*   items: [{
+              name: 'OLLA',
+              quantity: '1',
+              category: 'DIGITAL_GOODS',
+              unit_amount: {
+                currency_code: 'USD',
+                value: '9.99',
+              },
+            }] */
+        }]
+      },
+      advanced: {
+        commit: 'true'
+      },
+      style: {
+        label: 'paypal',
+        layout: 'vertical',
+
+        size: 'small',
+        color: 'blue',
+        shape: 'rect'
+      },
+      onApprove: (data, actions) => {
+        console.log('onApprove - transaction was approved, but not authorized', data, actions);
+        actions.order.get().then(details => {
+          console.log('onApprove - you can get full order details inside onApprove: ', details);
+          this.saveTotal();
+        });
+
+      },
+      onClientAuthorization: (data) => {
+        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+        // this.showSuccess = true;
+      },
+      onCancel: (data, actions) => {
+        console.log('OnCancel', data, actions);
+        // this.showCancel = true;
+
+      },
+      onError: err => {
+        console.log('OnError', err);
+        // this.showError = true;
+      },
+      onClick: (data, actions) => {
+        console.log('onClick', data, actions);
+        // this.resetStatus();
+      },
+    };
+  }
+
   saveTotal() {
-    console.log(this.totalForm.getRawValue());
     if (this.totalForm.valid == true) {
       this.maestroService.busy = this.comprobanteService.saveComprobante(this.totalForm.getRawValue()).pipe(takeUntil(this.ngUnsubscribe))
         .subscribe(

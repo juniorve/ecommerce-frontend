@@ -38,7 +38,9 @@
               "src/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js",
               "src/assets/shop/js/single_custom.js",
               "src/assets/css/js//jquery.mCustomScrollbar.concat.min.js",
-              "src/assets/css/js/custom.js"
+              "src/assets/css/js/custom.js",
+              "node_modules/jspdf/dist/jspdf.min.js",
+              "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js"
             ]
           },
           "configurations": {

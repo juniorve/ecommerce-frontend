@@ -10,11 +10,12 @@ import { takeUntil } from 'rxjs/operators';
 import { ProductoService } from '../../services/producto.service';
 // import jsPDF from 'jspdf';
 // import * as autoTable from 'jspdf-autotable'
-import * as jsPDF from 'jspdf';
+// import * as jsPDF from 'jspdf';
 // import * as autoTable from 'jspdf-autotable';
-require('jspdf-autotable');
+// require('jspdf-autotable');
 /* var jsPDF = require('jspdf');
 require('jspdf-autotable'); */
+declare var jsPDF: any;
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',

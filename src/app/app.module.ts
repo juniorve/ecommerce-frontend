@@ -8,6 +8,7 @@ import { routing, appRoutingProviders } from './app.routing';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPayPalModule } from 'ngx-paypal'
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -90,7 +91,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
     // BUSY
     NgBusyModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxPayPalModule
     // ProveedorModule
   ],
   entryComponents: [DialogComponent],

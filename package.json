@@ -28,6 +28,7 @@
     "jspdf": "^1.4.1",
     "jspdf-autotable": "^2.3.4",
     "ng-busy": "^6.0.3",
+    "ngx-paypal": "^6.2.0",
     "ngx-spinner": "^7.2.0",
     "primeicons": "^1.0.0",
     "primeng": "^5.2.7",
