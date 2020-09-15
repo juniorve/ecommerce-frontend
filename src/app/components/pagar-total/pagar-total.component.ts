@@ -1,5 +1,5 @@
 import { ProductoService } from './../../services/producto.service';
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MaestroService } from '../../services/maestro-service.service';
@@ -8,10 +8,6 @@ import { Subject } from 'rxjs/Subject';
 import swal from 'sweetalert';
 import { takeUntil } from 'rxjs/operators';
 import { ComprobanteService } from '../../services/comprobante.service';
-// import * as jsPDF from 'jspdf';
-/* var jsPDF = require('jspdf'); */
-// import * as autoTable from 'jspdf-autotable';
-// require('jspdf-autotable');
 declare var jsPDF: any;
 import {
   IPayPalConfig,
@@ -65,53 +61,56 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.unsubscribe();
   }
 
+
+
   initConfig(): void {
     this.payPalConfig = {
       currency: 'USD',
-      clientId: 'ATqUdLfwin80JOsDMIgcz-0gpP-apY9lcBZFmomxuH_CAw0sQDO9SLjgnDgeBHNVcPvyJF4mx1LHZ5Xh',
+      clientId: 'ASwVO02NVJwfzqIo9PWqbnrJaaHuChW7JcrqtO-stYL6VEO_AGxdyN6ARFjYgknvIbXK8NUrRqUfUY-T',
       createOrderOnClient: (data) => <ICreateOrderRequest>{
         intent: 'CAPTURE',
         purchase_units: [{
-          /*       amount: {
-                  currency_code: 'USD',
-                  value: '9.99',
-                  breakdown: {
-                    item_total: {
-                      currency_code: 'USD',
-                      value: '9.99'
-                    }
-                  }
-                }, */
+          /*    amount: {
+               currency_code: 'USD',
+               value: '9.99',
+               breakdown: {
+                 item_total: {
+                   currency_code: 'USD',
+                   value: '9.99'
+                 }
+               }
+             }, */
+
           amount: {
             currency_code: 'USD',
-            value: '8.00',
+            value: this.maestroService.sumaTotal.toFixed(2).toString(),
             breakdown: {
               item_total: {
                 currency_code: 'USD',
-                value: '8.00'
+                value: this.maestroService.sumaTotal.toFixed(2).toString()
               }
             }
           },
           items: this.maestroService.carritoProd.map((value: any) => {
             return {
               name: value.nombre,
-              quantity: value.cantidadCarrito,
-              category: value.tipo,
-              unit_amount: {
-                currency_code: 'USD',
-                value: '8.00',
-              }
-            };
-          })
-          /*   items: [{
-              name: 'OLLA',
-              quantity: '1',
+              quantity: value.cantidadCarrito.toString(),
               category: 'DIGITAL_GOODS',
               unit_amount: {
                 currency_code: 'USD',
-                value: '9.99',
-              },
-            }] */
+                value: value.precioVenta.toFixed(2).toString(),
+              }
+            };
+          })
+          /*    items: [{
+               name: 'OLLA',
+               quantity: '1',
+               category: 'DIGITAL_GOODS',
+               unit_amount: {
+                 currency_code: 'USD',
+                 value: '9.99',
+               },
+             }] */
         }]
       },
       advanced: {
@@ -129,7 +128,7 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
         console.log('onApprove - transaction was approved, but not authorized', data, actions);
         actions.order.get().then(details => {
           console.log('onApprove - you can get full order details inside onApprove: ', details);
-          this.saveTotal();
+          this.saveTotal(details);
         });
 
       },
@@ -153,7 +152,13 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
     };
   }
 
-  saveTotal() {
+  saveTotal(person) {
+    this.totalForm.controls.nombre.setValue(person.payer.name.given_name + ' ' + person.payer.name.surname);
+    this.totalForm.controls.dni.setValue('47687656');
+    this.totalForm.controls.numCuenta.setValue('19294478847176');
+    this.totalForm.controls.cvv.setValue('291');
+    this.totalForm.controls.email.setValue(person.payer.email_address);
+    this.totalForm.controls.total.setValue(this.maestroService.sumaTotal);
     if (this.totalForm.valid == true) {
       this.maestroService.busy = this.comprobanteService.saveComprobante(this.totalForm.getRawValue()).pipe(takeUntil(this.ngUnsubscribe))
         .subscribe(
@@ -182,8 +187,8 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
                                 console.log(response);
                                 if (i == this.maestroService.carritoProd.length - 1) {
                                   this.maestroService.clean();
-                                  /*  this._router.navigate(['/principal']); */
-                                  this.bandera = true;
+                                   this._router.navigate(['/principal']);
+                                  // this.bandera = true;
                                 }
                               },
                               errors => {

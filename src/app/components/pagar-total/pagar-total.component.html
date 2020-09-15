@@ -31,10 +31,10 @@
                 <div class="top-cart-content">
                   <ul class="scroller" style="height: 250px;">
                     <li *ngFor="let producto of maestroService.carritoProd">
-                      <a href="shop-item.html"><img src="{{url+'get-img-producto/'+producto.imagen}}"
+                      <a><img src="{{url+'get-img-producto/'+producto.imagen}}"
                           alt="Rolex Classic Watch" width="37" height="34"></a>
                       <span class="cart-content-count">x {{producto.cantidadCarrito}}</span>
-                      <strong><a href="shop-item.html">{{producto.nombre}}</a></strong>
+                      <strong><a>{{producto.nombre}}</a></strong>
                       <em>S/. {{producto.precioVenta * producto.cantidadCarrito}}</em>
                       <!-- <a href="javascript:void(0);" class="del-goods">&nbsp;</a> -->
                     </li>
@@ -80,10 +80,10 @@
 
     <form [formGroup]="totalForm" class="formulario">
       <div class="container">
-        <div class="row" style="padding-top: 20px;">
-          <div class="col-sm-3"></div>
-          <ngx-paypal class="col-sm-6" [config]="payPalConfig"></ngx-paypal>
-          <div class="col-sm-3"></div>
+        <div class="row" style="padding-top: 40px;">
+          <div class="col-sm-4"></div>
+          <ngx-paypal class="col-sm-4" [config]="payPalConfig"></ngx-paypal>
+          <div class="col-sm-4"></div>
 
 
        <!--    <div class="col-sm-12 name">
@@ -167,9 +167,9 @@
             <button class="btn volver btnsave" [routerLink]="['/carrito']" type="button" *ngIf="bandera==false">
               <i class="fa fa-arrow-left" aria-hidden="true"></i>
               Regresar</button>
-            <button class="btn guardar  btnsave" (click)="saveTotal()" type="submit" *ngIf="bandera==false">
+            <!-- <button class="btn guardar  btnsave" (click)="saveTotal()" type="submit" *ngIf="bandera==false">
               <i class="fa fa-floppy-o" aria-hidden="true"></i>
-              Realizar pago</button>
+              Realizar pago</button> -->
 
               <button class="btn volver btnsave" [routerLink]="['/principal']" type="button" *ngIf="bandera==true">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
