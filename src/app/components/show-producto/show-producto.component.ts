@@ -128,7 +128,7 @@ export class ShowProductoComponent implements OnInit,OnDestroy {
     this.comentarioForm = this.fb.group({
       name:["",Validators.required],
       email:["",Validators.required],
-      fecha:["20 de junio 2020"],
+      fecha:["15 de septiembre 2020"],
       descripcion:["",Validators.required]
     });
   }

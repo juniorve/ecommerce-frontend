@@ -1,3 +1,4 @@
+import { MaestroService } from './../../../services/maestro-service.service';
 import { ProveedorService } from './../../../services/proveedor.service';
 import { Producto } from './../../../models/producto';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -42,6 +43,7 @@ export class NewProductoComponent implements OnInit {
 
   tipos = [
     { nombre: 'Olla', value: 'Olla' },
+    { nombre: 'Sarten', value: 'Sarten' },
     { nombre: 'Cubiertos', value: 'Cubiertos' },
     { nombre: 'Cafetera', value: 'Cafetera' },
     { nombre: 'Batidora', value: 'Batidora' },
@@ -69,6 +71,7 @@ export class NewProductoComponent implements OnInit {
   public imagenTemp: any;
 
   constructor(private _productoService: ProductoService,
+    public maestroService: MaestroService,
     private _proveedorService: ProveedorService,
     private _userService: UserService,
     private _route: ActivatedRoute,
@@ -86,7 +89,7 @@ export class NewProductoComponent implements OnInit {
 
   public proveedores: Proveedor[] = [];
   getProveedores() {
-    this._proveedorService.getProveedores(this.token, this.identity._id).subscribe(
+    this.maestroService.busy = this._proveedorService.getProveedores(this.token, this.identity._id).subscribe(
       response => {
         if (!response.proveedores) {
 
@@ -104,7 +107,7 @@ export class NewProductoComponent implements OnInit {
 
   saveProducto() {
     console.log(this.producto);
-    this._productoService.saveProducto(this.token, this.producto).subscribe(
+    this.maestroService.busy = this._productoService.saveProducto(this.token, this.producto).subscribe(
       response => {
         if (!response.producto) {
           swal('Error', 'el producto no se guardo correctamente', 'warning');

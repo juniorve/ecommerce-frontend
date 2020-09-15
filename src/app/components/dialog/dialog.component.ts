@@ -10,32 +10,32 @@ import { takeUntil } from 'rxjs/operators';
 import { ProductoService } from '../../services/producto.service';
 // import jsPDF from 'jspdf';
 // import * as autoTable from 'jspdf-autotable'
-/* import * as jsPDF from 'jspdf';
-import * as autoTable from 'jspdf-autotable'; */
+import * as jsPDF from 'jspdf';
+// import * as autoTable from 'jspdf-autotable';
 
-var jsPDF = require('jspdf');
-require('jspdf-autotable');
+/* var jsPDF = require('jspdf');
+require('jspdf-autotable'); */
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.css'],
   // encapsulation: ViewEncapsulation.None,
-  providers: [MaestroService,ComprobanteService,ProductoService]
+  providers: [MaestroService, ComprobanteService, ProductoService]
 })
 export class DialogComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<boolean> = new Subject();
-  public detalle:any[]=[];
-  public productos:any[]=[];
+  public detalle: any[] = [];
+  public productos: any[] = [];
 
-  constructor(private productoService:ProductoService,private fb: FormBuilder, private router: Router, private route: ActivatedRoute,private comprobanteService:ComprobanteService
-    ,private dialog: MatDialog, public dialogRef: MatDialogRef<DialogComponent>, public maestroService: MaestroService,
+  constructor(private productoService: ProductoService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private comprobanteService: ComprobanteService
+    , private dialog: MatDialog, public dialogRef: MatDialogRef<DialogComponent>, public maestroService: MaestroService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
   }
 
   ngOnInit() {
     console.log(this.data);
-    if(this.data.comprobante){
+    if (this.data.comprobante) {
       this.getDetalleComprobante();
     }
   }
@@ -44,58 +44,57 @@ export class DialogComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.next(true);
     this.ngUnsubscribe.unsubscribe();
   }
-  
+
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  getDetalleComprobante(){
-   this.maestroService.busy=this.comprobanteService.getDetalleComprobante(this.data.comprobante._id).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-      res=>{
+  getDetalleComprobante() {
+    this.maestroService.busy = this.comprobanteService.getDetalleComprobante(this.data.comprobante._id).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      res => {
         console.log(res);
-        if(res.detalleComprobante){
-          this.detalle=res.detalleComprobante;
-          for(let item of this.detalle){
-              this.getProductos(item)
+        if (res.detalleComprobante) {
+          this.detalle = res.detalleComprobante;
+          for (let item of this.detalle) {
+            this.getProductos(item)
           }
           console.log(this.detalle);
         }
       },
-      error=>{
+      error => {
         console.log(error);
       }
     );
   }
 
-  getProductos(item:any)
-  {        
-     this.maestroService.busy= this.productoService.getProducto(item.idProducto).pipe(takeUntil(this.ngUnsubscribe))
-     .subscribe(
-            response =>{
-              console.log(response);
-              if(response.producto){
-                item.nameProducto= response.producto.nombre;
-                item.color= response.producto.color;
-                item.material= response.producto.material;
-                item.marca= response.producto.marca;
-                item.precioCompra= response.producto.precioCompra;
-                item.ganancia = (response.producto.precioVenta-response.producto.precioCompra)*item.cantidad;
-              } 
-            },
-          error =>{
+  getProductos(item: any) {
+    this.maestroService.busy = this.productoService.getProducto(item.idProducto).pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(
+        response => {
+          console.log(response);
+          if (response.producto) {
+            item.nameProducto = response.producto.nombre;
+            item.color = response.producto.color;
+            item.material = response.producto.material;
+            item.marca = response.producto.proveedor ? response.producto.proveedor.nombre : '';
+            item.precioCompra = response.producto.precioCompra;
+            item.ganancia = (response.producto.precioVenta - response.producto.precioCompra) * item.cantidad;
           }
-     );
-    }
+        },
+        error => {
+        }
+      );
+  }
 
-    
+
   PDF() {
 
     // let doc = new jsPDF('p', 'pt', 'a4',true);
-    let doc:any={};
-    doc  = new jsPDF('p', 'pt', 'a4',1);
+    let doc: any = {};
+    doc = new jsPDF('p', 'pt', 'a4', 1);
     let totalPagesExp = "{total_pages_count_string}";
 
-    let columns = ["N°", "PRODUCTO", "COLOR", "MARCA", "MATERIAL", "PRECIO COMPRA","PRECIO VENTA", "CANTIDAD","GANANCIA"];
+    let columns = ["N°", "PRODUCTO", "COLOR", "MARCA", "MATERIAL", "PRECIO COMPRA", "PRECIO VENTA", "CANTIDAD", "GANANCIA"];
     let rows: Array<object> = [];
     for (let i = 0; i < this.detalle.length; i++) {
       rows[i] = [];
@@ -168,30 +167,30 @@ export class DialogComponent implements OnInit, OnDestroy {
   }
 
 
-  
+
   textPDF(doc, pdfResultsData, totalPagesExp) {
     let y = 0;
 
     // var pdf = new jsPDF();
-  /*   var img = new Image;
-         doc.addImage(this, 'PNG', 180, 5, 240, 90, 'center');
-    img.crossOrigin = "";  
-    img.src = "assets/img/logo.png";
- */
+    /*   var img = new Image;
+           doc.addImage(this, 'PNG', 180, 5, 240, 90, 'center');
+      img.crossOrigin = "";  
+      img.src = "assets/img/logo.png";
+   */
     // let imgData = 'data:image/jpeg;base64,' + this.datoEmpresa['logo'];
     //       doc.addImage(imgData, 'JPEG', 180, 5, 240, 90, 'center');
-   
-      doc.setFontSize(8);
-      doc.setFontType("bold");
-      let lines = doc.splitTextToSize("ICHICAWA", 350);
-      doc.text(300, 95, lines, 'center');
-      y = 0 + (8 * (lines.length - 1));
 
     doc.setFontSize(8);
     doc.setFontType("bold");
-     lines = doc.splitTextToSize( 'DIRECCION: ' + "Jirón Junín 774, Cercado de Lima 15001", 250);
+    let lines = doc.splitTextToSize("ICHICAWA", 350);
+    doc.text(300, 95, lines, 'center');
+    y = 0 + (8 * (lines.length - 1));
+
+    doc.setFontSize(8);
+    doc.setFontType("bold");
+    lines = doc.splitTextToSize('DIRECCION: ' + "Jirón Junín 774, Cercado de Lima 15001", 250);
     doc.text(300, 103 + y, lines, 'center');
-      doc.text(300, 112 + (8 * (lines.length - 1)) + y, `RUC: 12434434324`, 'center');
+    doc.text(300, 112 + (8 * (lines.length - 1)) + y, `RUC: 12434434324`, 'center');
 
     doc.setFontSize(7);
 
@@ -202,7 +201,7 @@ export class DialogComponent implements OnInit, OnDestroy {
     doc.text(250, 165, `Cliente: ${this.data.comprobante.nombre}`);
     doc.text(42, 155, `Fecha: ${this.data.comprobante.fecha}`);
     doc.text(250, 155, `Total: S/. ${this.data.comprobante.total}`);
- 
+
 
     doc.setDrawColor(0);
     let lastPosY = 620;

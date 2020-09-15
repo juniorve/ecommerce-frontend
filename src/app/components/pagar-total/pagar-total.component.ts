@@ -5,13 +5,12 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 import { MaestroService } from '../../services/maestro-service.service';
 import { GLOBAL } from 'src/app/services/global';
 import { Subject } from 'rxjs/Subject';
-import swal from "sweetalert";
+import swal from 'sweetalert';
 import { takeUntil } from 'rxjs/operators';
 import { ComprobanteService } from '../../services/comprobante.service';
-
-var jsPDF = require('jspdf');
-require('jspdf-autotable');
-
+import * as jsPDF from 'jspdf';
+/* var jsPDF = require('jspdf'); */
+import * as autoTable from 'jspdf-autotable';
 @Component({
   selector: 'app-pagar-total',
   templateUrl: './pagar-total.component.html',
@@ -19,7 +18,7 @@ require('jspdf-autotable');
   providers: [ComprobanteService, ProductoService]
 })
 export class PagarTotalComponent implements OnInit, OnDestroy {
-  public totalForm: FormGroup
+  public totalForm: FormGroup;
   envios = [
     { name: 'Si' },
     { name: 'No' },
@@ -28,13 +27,13 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
   public identity;
   public title: String = 'Pago del total de compras';
   public token;
-  public detalle:any[]=[];
+  public detalle: any[] = [];
   public url;
   public mensajeError: String;
   public imagenTemp: any;
   public date = new FormControl(new Date());
   public date1 = new FormControl(new Date());
-  public bandera=false;
+  public bandera = false;
 
   constructor(private fb: FormBuilder, private maestroService: MaestroService, private comprobanteService: ComprobanteService,
     private _route: ActivatedRoute, private productoService: ProductoService,
@@ -46,7 +45,7 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._route.params.forEach((params: Params) => {
       if (params['total']) {
-        this.totalForm.controls["total"].setValue(parseFloat(params['total']));
+        this.totalForm.controls['total'].setValue(parseFloat(params['total']));
       }
     });
   }
@@ -62,7 +61,7 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
       this.maestroService.busy = this.comprobanteService.saveComprobante(this.totalForm.getRawValue()).pipe(takeUntil(this.ngUnsubscribe))
         .subscribe(
           res => {
-            swal("Pago realizado", "El pago de productos fue realizado correctamente", {
+            swal('Pago realizado', 'El pago de productos fue realizado correctamente', {
               icon: 'success', closeOnClickOutside: false
             }).then(
               (pagoProductos) => {
@@ -74,8 +73,8 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
                     data.precio = this.maestroService.carritoProd[i].precioVenta;
                     data.idProducto = this.maestroService.carritoProd[i]._id;
                     data.idComprobante = res.comprobante._id;
-                    
-                    this.getDetalleComprobante(data.idComprobante); 
+
+                    this.getDetalleComprobante(data.idComprobante);
                     this.maestroService.busy = this.comprobanteService.saveDetalleComprobante(data).pipe(takeUntil(this.ngUnsubscribe))
                       .subscribe(
                         resp => {
@@ -86,8 +85,8 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
                                 console.log(response);
                                 if (i == this.maestroService.carritoProd.length - 1) {
                                   this.maestroService.clean();
-                                 /*  this._router.navigate(['/principal']); */
-                                    this.bandera=true;
+                                  /*  this._router.navigate(['/principal']); */
+                                  this.bandera = true;
                                 }
                               },
                               errors => {
@@ -109,60 +108,59 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
           }
         );
     } else {
-      swal("Campos incompletos", "Algunos campos del formulario no fueron completados", "warning");
+      swal('Campos incompletos', 'Algunos campos del formulario no fueron completados', 'warning');
     }
   }
 
-  getDetalleComprobante(idComprobante:any){
-    this.maestroService.busy=this.comprobanteService.getDetalleComprobante(idComprobante).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-       res=>{
-         console.log(res);
-         if(res.detalleComprobante){
-           this.detalle=res.detalleComprobante;
-           for(let item of this.detalle){
-               this.getProductos(item)
-           }
-           console.log(this.detalle);
-         }
-       },
-       error=>{
-         console.log(error);
-       }
-     );
-   }
- 
-   getProductos(item:any)
-   {        
-      this.maestroService.busy= this.productoService.getProducto(item.idProducto).pipe(takeUntil(this.ngUnsubscribe))
+  getDetalleComprobante(idComprobante: any) {
+    this.maestroService.busy = this.comprobanteService.getDetalleComprobante(idComprobante).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      res => {
+        console.log(res);
+        if (res.detalleComprobante) {
+          this.detalle = res.detalleComprobante;
+          for (let item of this.detalle) {
+            this.getProductos(item)
+          }
+          console.log(this.detalle);
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  getProductos(item: any) {
+    this.maestroService.busy = this.productoService.getProducto(item.idProducto).pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(
-             response =>{
-               console.log(response);
-               if(response.producto){
-                 item.nameProducto= response.producto.nombre;
-                 item.color= response.producto.color;
-                 item.material= response.producto.material;
-                 item.marca= response.producto.marca;
-               } 
-             },
-           error =>{
-           }
+        response => {
+          console.log(response);
+          if (response.producto) {
+            item.nameProducto = response.producto.nombre;
+            item.color = response.producto.color;
+            item.material = response.producto.material;
+            item.marca = response.producto.proveedor ? response.producto.proveedor.nombre : '';
+          }
+        },
+        error => {
+        }
       );
-     }
+  }
 
   newForm() {
     this.totalForm = this.fb.group({
-      nombre: ["", Validators.required],
-      email: ["", Validators.compose([Validators.email, Validators.required])],
+      nombre: ['', Validators.required],
+      email: ['', Validators.compose([Validators.email, Validators.required])],
       dni: [null, Validators.required],
       numCuenta: [null, Validators.required],
-      cvv: ["", Validators.required],
+      cvv: ['', Validators.required],
       total: [null, Validators.required],
-      vencimiento: [""],
-      fecha: [""]
+      vencimiento: [''],
+      fecha: ['']
     });
-    this.totalForm.controls["total"].disable();
-    this.totalForm.controls["vencimiento"].setValue(this.date.value);
-    this.totalForm.controls["fecha"].setValue(this.date1.value);
+    this.totalForm.controls['total'].disable();
+    this.totalForm.controls['vencimiento'].setValue(this.date.value);
+    this.totalForm.controls['fecha'].setValue(this.date1.value);
   }
 
 
@@ -170,21 +168,21 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
   PDF() {
 
     // let doc = new jsPDF('p', 'pt', 'a4',true);
-    let doc:any={};
-    doc  = new jsPDF('p', 'pt', 'a4',1);
-    let totalPagesExp = "{total_pages_count_string}";
+    let doc: any = {};
+    doc = new jsPDF('p', 'pt', 'a4', 1);
+    let totalPagesExp = '{total_pages_count_string}';
 
-    let columns = ["N°", "PRODUCTO", "COLOR", "MARCA", "MATERIAL", "PRECIO", "CANTIDAD"];
+    let columns = ['N°', 'PRODUCTO', 'COLOR', 'MARCA', 'MATERIAL', 'PRECIO', 'CANTIDAD'];
     let rows: Array<object> = [];
     for (let i = 0; i < this.detalle.length; i++) {
       rows[i] = [];
-      rows[i]["0"] = i + 1;
-      rows[i]["1"] =this.detalle[i].nameProducto;
-      rows[i]["2"] =this.detalle[i].color;
-      rows[i]["3"] =this.detalle[i].marca;
-      rows[i]["4"] =this.detalle[i].material;
-      rows[i]["5"] =this.detalle[i].precio;
-      rows[i]["6"] =this.detalle[i].cantidad;
+      rows[i]['0'] = i + 1;
+      rows[i]['1'] = this.detalle[i].nameProducto;
+      rows[i]['2'] = this.detalle[i].color;
+      rows[i]['3'] = this.detalle[i].marca;
+      rows[i]['4'] = this.detalle[i].material;
+      rows[i]['5'] = this.detalle[i].precio;
+      rows[i]['6'] = this.detalle[i].cantidad;
     }
 
     let cm = this;
@@ -243,55 +241,55 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
   }
 
 
-  
+
   textPDF(doc, pdfResultsData, totalPagesExp) {
     let y = 0;
 
     // var pdf = new jsPDF();
-  /*   var img = new Image;
-         doc.addImage(this, 'PNG', 180, 5, 240, 90, 'center');
-    img.crossOrigin = "";  
-    img.src = "assets/img/logo.png";
- */
+    /*   var img = new Image;
+           doc.addImage(this, 'PNG', 180, 5, 240, 90, 'center');
+      img.crossOrigin = '';  
+      img.src = 'assets/img/logo.png';
+   */
     // let imgData = 'data:image/jpeg;base64,' + this.datoEmpresa['logo'];
     //       doc.addImage(imgData, 'JPEG', 180, 5, 240, 90, 'center');
-   
-      doc.setFontSize(8);
-      doc.setFontType("bold");
-      let lines = doc.splitTextToSize("ICHICAWA", 350);
-      doc.text(300, 95, lines, 'center');
-      y = 0 + (8 * (lines.length - 1));
 
     doc.setFontSize(8);
-    doc.setFontType("bold");
-     lines = doc.splitTextToSize( 'DIRECCION: ' + "Jirón Junín 774, Cercado de Lima 15001", 250);
+    doc.setFontType('bold');
+    let lines = doc.splitTextToSize('ICHICAWA', 350);
+    doc.text(300, 95, lines, 'center');
+    y = 0 + (8 * (lines.length - 1));
+
+    doc.setFontSize(8);
+    doc.setFontType('bold');
+    lines = doc.splitTextToSize('DIRECCION: ' + 'Jirón Junín 774, Cercado de Lima 15001', 250);
     doc.text(300, 103 + y, lines, 'center');
-      doc.text(300, 112 + (8 * (lines.length - 1)) + y, `RUC: 12434434324`, 'center');
+    doc.text(300, 112 + (8 * (lines.length - 1)) + y, `RUC: 12434434324`, 'center');
 
     doc.setFontSize(7);
 
     //DATOS DEL COMPROBANTE
-    doc.setFontType("normal");
-    doc.text(42, 145, `DNI: ${this.totalForm.controls["dni"].value}`);
-    doc.text(42, 165, `Email: ${this.totalForm.controls["email"].value}`);
-    doc.text(250, 165, `Nombre: ${this.totalForm.controls["nombre"].value}`);
-    doc.text(42, 155, `Fecha: ${new Date(this.totalForm.controls["fecha"].value).toLocaleDateString("es-Pe",{day:"2-digit",month:"2-digit",year:"numeric"})}`);
-    doc.text(250, 155, `Total: S/. ${this.totalForm.controls["total"].value}`);
-   
-    doc.setFontType("bold");    
+    doc.setFontType('normal');
+    doc.text(42, 145, `DNI: ${this.totalForm.controls['dni'].value}`);
+    doc.text(42, 165, `Email: ${this.totalForm.controls['email'].value}`);
+    doc.text(250, 165, `Nombre: ${this.totalForm.controls['nombre'].value}`);
+    doc.text(42, 155, `Fecha: ${new Date(this.totalForm.controls['fecha'].value).toLocaleDateString('es-Pe', { day: '2-digit', month: '2-digit', year: 'numeric' })}`);
+    doc.text(250, 155, `Total: S/. ${this.totalForm.controls['total'].value}`);
+
+    doc.setFontType('bold');
     doc.text(42, 180, `Lista de productos comprados`);
- 
+
 
     doc.setFontStyle('bold');
     doc.setDrawColor(0);
     doc.roundedRect(40, 190, 513, 530, 3, 3);
-    let str = "Página " + pdfResultsData.pageCount;
+    let str = 'Página ' + pdfResultsData.pageCount;
     // Total page number plugin only available in jspdf v1.0+
     if (typeof doc.putTotalPages === 'function') {
-      str = str + " de " + totalPagesExp;
+      str = str + ' de ' + totalPagesExp;
     }
     doc.setTextColor(0, 0, 0);
-    doc.text(str, 550, 800, "center");
+    doc.text(str, 550, 800, 'center');
   }
 
 

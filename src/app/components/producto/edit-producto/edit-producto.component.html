@@ -1,5 +1,5 @@
+<div [ngBusy]="{busy: maestroService.busy, message: 'Cargando...', backdrop: true}"></div>
 <div class="contenedor col-md-12 ">
-
   <br>
   <div class="container">
 
@@ -24,7 +24,7 @@
           <div class="col-xs-12 col-md-6">
             <mat-form-field class="texto" appearance="outline">
               <mat-label>Seleccione Proveedor</mat-label>
-              <mat-select name="proveedor" [(ngModel)]="producto.proveedor" [formControl]="envioControl" required>
+              <mat-select name="proveedor" [(ngModel)]="producto.proveedor._id" [formControl]="envioControl" required>
                 <mat-option *ngFor="let proveedor of proveedores" [value]="proveedor._id">
                   {{proveedor.nombre}}
                 </mat-option>

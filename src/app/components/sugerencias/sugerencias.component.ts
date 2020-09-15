@@ -12,18 +12,20 @@ import { SugerenciasService } from '../../services/sugerencias.service';
   selector: 'app-sugerencias',
   templateUrl: './sugerencias.component.html',
   styleUrls: ['./sugerencias.component.css'],
-  providers:[SugerenciasService]
+  providers: [SugerenciasService]
 })
-export class SugerenciasComponent implements OnInit,OnDestroy {
+export class SugerenciasComponent implements OnInit, OnDestroy {
 
   public url;
-  public sugerenciasForm:FormGroup;
+  public sugerenciasForm: FormGroup;
   private ngUnsubscribe: Subject<boolean> = new Subject();
 
-  constructor(private fb:FormBuilder, private sugerenciaService:SugerenciasService,public maestroService:MaestroService,private router:Router) {
-    this.url=GLOBAL.url;
+  constructor(
+    private fb: FormBuilder, private sugerenciaService: SugerenciasService,
+    public maestroService: MaestroService, private router: Router) {
+    this.url = GLOBAL.url;
     this.newForm();
-   }
+  }
 
   ngOnInit() {
   }
@@ -33,37 +35,39 @@ export class SugerenciasComponent implements OnInit,OnDestroy {
     this.ngUnsubscribe.unsubscribe();
   }
 
-  newForm(){
-    this.sugerenciasForm=this.fb.group({
-      dni:["",Validators.required],
-      nombre:["",Validators.required],
-      celular:["",Validators.required],
-      email:["",Validators.compose([Validators.email,Validators.required])],
-      descripcion:["",Validators.required],
+  newForm() {
+    this.sugerenciasForm = this.fb.group({
+      dni: ['', Validators.required],
+      nombre: ['', Validators.required],
+      celular: ['', Validators.required],
+      email: ['', Validators.compose([Validators.email, Validators.required])],
+      descripcion: ['', Validators.required],
     });
   }
 
-  saveSugerencia(){
-    if(this.sugerenciasForm.valid==true){
-     this.maestroService.busy= this.maestroService.busy=this.sugerenciaService.saveSugerencia(this.sugerenciasForm.value).pipe(takeUntil(this.ngUnsubscribe))
-       .subscribe(
-         res=>{
-             console.log(res);
-             if(res.sugerencia){
-               swal("Sugerencia registrada","La sugerencia fue registrada exitosamente","success")
-               .then((sugerenciaSave)=>{
-                 if(sugerenciaSave){
-                   this.newForm();
-                 }
-               });
-             }
-         },
-         error=>{
-   
-         }
-       );
-    }else{
-      swal("Atención","Todos los campos son obligatorios","info");
+  saveSugerencia() {
+    if (this.sugerenciasForm.valid == true) {
+      this.maestroService.busy =
+        this.maestroService.busy = this.sugerenciaService.saveSugerencia(this.sugerenciasForm.value).pipe(takeUntil(this.ngUnsubscribe))
+          .subscribe(
+            res => {
+              console.log(res);
+              if (res.sugerencia) {
+                swal('Sugerencia registrada', 'Su sugerencia fue registrada exitosamente, nos pondremos en contacto a la brevedad',
+                  'success')
+                  .then((sugerenciaSave) => {
+                    if (sugerenciaSave) {
+                      this.newForm();
+                    }
+                  });
+              }
+            },
+            error => {
+
+            }
+          );
+    } else {
+      swal('Atención', 'Todos los campos son obligatorios', 'info');
     }
   }
 }

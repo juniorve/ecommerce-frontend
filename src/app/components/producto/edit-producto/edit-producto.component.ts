@@ -1,3 +1,4 @@
+import { MaestroService } from './../../../services/maestro-service.service';
 import { ProveedorService } from './../../../services/proveedor.service';
 import { Producto } from './../../../models/producto';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -20,7 +21,7 @@ declare var $: any;
   selector: 'edit-producto',
   templateUrl: './edit-producto.component.html',
   styleUrls: ['./edit-producto.component.css'],
-  providers: [ProductoService, UserService,ProveedorService]
+  providers: [ProductoService, UserService, ProveedorService]
 
 })
 export class EditProductoComponent implements OnInit {
@@ -32,32 +33,33 @@ export class EditProductoComponent implements OnInit {
     { name: 'No' },
   ];
 
-  
-  colores=[
-    {nombre:"Rojo",value:"Rojo"},
-    {nombre:"Plateado",value:"Plateado"},
-    {nombre:"Negro",value:"Negro"},
-    {nombre:"Azul",value:"Azul"},
-    {nombre:"Blanco",value:"Blanco"}
+
+  colores = [
+    { nombre: 'Rojo', value: 'Rojo' },
+    { nombre: 'Plateado', value: 'Plateado' },
+    { nombre: 'Negro', value: 'Negro' },
+    { nombre: 'Azul', value: 'Azul' },
+    { nombre: 'Blanco', value: 'Blanco' }
   ];
 
-  tipos=[
-    {nombre:"Olla",value:"Olla"},
-    {nombre:"Cubiertos",value:"Cubiertos"},
-    {nombre:"Cafetera",value:"Cafetera"},
-    {nombre:"Batidora",value:"Batidora"},
-    {nombre:"Vajillas",value:"Vajillas"},
-    {nombre:"Hervidor",value:"Hervidor"},
-    {nombre:"Set completo",value:"Set completo"}
+  tipos = [
+    { nombre: 'Olla', value: 'Olla' },
+    { nombre: 'Sarten', value: 'Sarten' },
+    { nombre: 'Cubiertos', value: 'Cubiertos' },
+    { nombre: 'Cafetera', value: 'Cafetera' },
+    { nombre: 'Batidora', value: 'Batidora' },
+    { nombre: 'Vajillas', value: 'Vajillas' },
+    { nombre: 'Hervidor', value: 'Hervidor' },
+    { nombre: 'Set completo', value: 'Set completo' }
   ];
 
-  marcas=[
-    {nombre:"Oster",value:"Oster"},
-    {nombre:"Tramontina",value:"Tramontina"},
-    {nombre:"Record",value:"Record"},
-    {nombre:"Bosh",value:"Bosh"},
-    {nombre:"T-Fal",value:"T-Fal"},
-    {nombre:"Hervidor",value:"Hervidor"}
+  marcas = [
+    { nombre: 'Oster', value: 'Oster' },
+    { nombre: 'Tramontina', value: 'Tramontina' },
+    { nombre: 'Record', value: 'Record' },
+    { nombre: 'Bosh', value: 'Bosh' },
+    { nombre: 'T-Fal', value: 'T-Fal' },
+    { nombre: 'Hervidor', value: 'Hervidor' }
   ];
   // date = new FormControl(new Date());
   // serializedDate = new FormControl((new Date()).toISOString());
@@ -68,26 +70,27 @@ export class EditProductoComponent implements OnInit {
   public producto: Producto;
   public mensajeError: String;
   public imagenTemp: any;
-  public productoId:String='';
-  
-public proveedores:Proveedor[]=[];
+  public productoId: String = '';
+
+  public proveedores: Proveedor[] = [];
 
   constructor(private _productoService: ProductoService,
-    private _proveedorService:ProveedorService,
+    private _proveedorService: ProveedorService,
     private _userService: UserService,
     private _route: ActivatedRoute,
+    public maestroService: MaestroService,
     private _router: Router) {
     this.url = GLOBAL.url;
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
-    this.producto = new Producto('',null,null,null,null,null,'','','','','','','',this.identity._id,'');
+    this.producto = new Producto('', null, null, null, null, null, '', '', '', '', '', '', '', this.identity._id, '');
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.gerProductoUrl();
     this.getProveedores();
   }
- 
+
   gerProductoUrl() {
     this._route.params.forEach((params: Params) => {
       if (params['id']) {
@@ -99,14 +102,14 @@ public proveedores:Proveedor[]=[];
 
 
   getProducto() {
-    this._productoService.getProducto(this.productoId).subscribe(
+    this.maestroService.busy = this._productoService.getProducto(this.productoId).subscribe(
       response => {
         console.log(response);
         if (!response.producto) {
         } else {
           this.producto = response.producto;
           console.log(this.producto);
-           this.getProveedores();
+          this.getProveedores();
           //    this.imagenTemp=this.restaurant.imagen;
         }
       },
@@ -121,7 +124,7 @@ public proveedores:Proveedor[]=[];
 
 
   getProveedores() {
-    this._proveedorService.getProveedores(this.token,this.identity._id).subscribe(
+    this.maestroService.busy = this._proveedorService.getProveedores(this.token, this.identity._id).subscribe(
       response => {
         if (!response.proveedores) {
 
@@ -139,7 +142,7 @@ public proveedores:Proveedor[]=[];
 
   editProducto() {
     console.log(this.producto);
-    this._productoService.updateProducto(this.productoId, this.producto).subscribe(
+    this.maestroService.busy = this._productoService.updateProducto(this.productoId, this.producto).subscribe(
       response => {
         if (!response.producto) {
           swal('Error', 'el producto no se modifico correctamente', 'warning');
@@ -150,11 +153,11 @@ public proveedores:Proveedor[]=[];
             this.filesToUpload).then(
               (result) => {
                 swal('Producto modificado', 'Datos modificados correctamente', 'success')
-                .then((prodCreate)=>{
-                  if(prodCreate){
-                    this._router.navigate(['/adm-producto']);
-                  }
-                });
+                  .then((prodCreate) => {
+                    if (prodCreate) {
+                      this._router.navigate(['/adm-producto']);
+                    }
+                  });
               },
               (error) => {
                 console.log(error);
