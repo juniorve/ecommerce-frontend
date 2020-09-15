@@ -1,11 +1,12 @@
 import { UserService } from './../../services/user.service';
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, AfterViewInit } from '@angular/core';
 
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ArgumentType } from '@angular/compiler/src/core';
 import { EventEmitter } from 'protractor';
 
-declare var $:any;
+declare var $: any;
+declare var jQuery: any;
 
 
 @Component({
@@ -32,77 +33,44 @@ export class SidebarComponent implements OnInit {
     if (this.identity) {
       this.nameUser = this.identity.name;
     }
-    console.log(this.identity);
-
-
-
-
-    this.sidebar();
-    this.dropdown();
-
+    this.render();
   }
 
-  dropdown() {
+  render() {
+    jQuery(function ($) {
 
-    [].slice.call(document.querySelectorAll('.dropdown .nav-link')).forEach(function (el) {
-      el.addEventListener('click', onClick, false);
-    });
-
-    function onClick(e) {
-      e.preventDefault();
-      var el = this.parentNode;
-      el.classList.contains('show-submenu') ? hideSubMenu(el) : showSubMenu(el);
-    }
-
-    function showSubMenu(el) {
-      el.classList.add('show-submenu');
-      document.addEventListener('click', function onDocClick(e) {
-        e.preventDefault();
-        if (el.contains(e.target)) {
-          return;
+      $('.sidebar-dropdown > a').click(function () {
+        $('.sidebar-submenu').slideUp(200);
+        if ($(this).parent().hasClass('active')) {
+          $('.sidebar-dropdown').removeClass('active');
+          $(this).parent().removeClass('active');
+        } else {
+          $('.sidebar-dropdown').removeClass('active');
+          $(this).next('.sidebar-submenu').slideDown(200);
+          $(this).parent().addClass('active');
         }
-        document.removeEventListener('click', onDocClick);
-        hideSubMenu(el);
+
       });
-    }
 
-    function hideSubMenu(el) {
-      el.classList.remove('show-submenu');
-    }
+      $('#toggle-sidebar').click(function () {
+        $('.page-wrapper').toggleClass('toggled');
+      });
+      const themes = 'chiller-theme ice-theme cool-theme light-theme green-theme spicy-theme purple-theme';
+      $('[data-theme]').click(function () {
+        $('.page-wrapper').removeClass(themes);
+        $('.page-wrapper').addClass($(this).attr('data-theme'));
+      });
 
-  }
+      if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        $('.sidebar-content').mCustomScrollbar({
+          axis: 'y',
+          autoHideScrollbar: true,
+          scrollInertia: 300
+        });
+        $('.sidebar-content').addClass('desktop');
 
-  sidebar() {
-    $(".sidebar-dropdown > a").click(function () {
-      $(".sidebar-submenu").slideUp(200);
-      if (
-        $(this)
-          .parent()
-          .hasClass("active")
-      ) {
-        $(".sidebar-dropdown").removeClass("active");
-        $(this)
-          .parent()
-          .removeClass("active");
-      } else {
-        $(".sidebar-dropdown").removeClass("active");
-        $(this)
-          .next(".sidebar-submenu")
-          .slideDown(200);
-        $(this)
-          .parent()
-          .addClass("active");
       }
     });
-
-    $("#close-sidebar").click(function () {
-      $(".page-wrapper").removeClass("toggled");
-    });
-    $("#show-sidebar").click(function () {
-      $(".page-wrapper").addClass("toggled");
-    });
-
-
   }
 
 

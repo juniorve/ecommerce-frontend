@@ -20,7 +20,7 @@ declare var $: any;
   selector: 'new-producto',
   templateUrl: './new-producto.component.html',
   styleUrls: ['./new-producto.component.css'],
-  providers: [ProductoService, UserService,ProveedorService]
+  providers: [ProductoService, UserService, ProveedorService]
 
 })
 export class NewProductoComponent implements OnInit {
@@ -32,31 +32,31 @@ export class NewProductoComponent implements OnInit {
     { name: 'No' },
   ];
 
-  colores=[
-    {nombre:"Rojo",value:"Rojo"},
-    {nombre:"Plateado",value:"Plateado"},
-    {nombre:"Negro",value:"Negro"},
-    {nombre:"Azul",value:"Azul"},
-    {nombre:"Blanco",value:"Blanco"}
+  colores = [
+    { nombre: 'Rojo', value: 'Rojo' },
+    { nombre: 'Plateado', value: 'Plateado' },
+    { nombre: 'Negro', value: 'Negro' },
+    { nombre: 'Azul', value: 'Azul' },
+    { nombre: 'Blanco', value: 'Blanco' }
   ];
 
-  tipos=[
-    {nombre:"Olla",value:"Olla"},
-    {nombre:"Cubiertos",value:"Cubiertos"},
-    {nombre:"Cafetera",value:"Cafetera"},
-    {nombre:"Batidora",value:"Batidora"},
-    {nombre:"Vajillas",value:"Vajillas"},
-    {nombre:"Hervidor",value:"Hervidor"},
-    {nombre:"Set completo",value:"Set completo"}
+  tipos = [
+    { nombre: 'Olla', value: 'Olla' },
+    { nombre: 'Cubiertos', value: 'Cubiertos' },
+    { nombre: 'Cafetera', value: 'Cafetera' },
+    { nombre: 'Batidora', value: 'Batidora' },
+    { nombre: 'Vajillas', value: 'Vajillas' },
+    { nombre: 'Hervidor', value: 'Hervidor' },
+    { nombre: 'Set completo', value: 'Set completo' }
   ];
 
-  marcas=[
-    {nombre:"Oster",value:"Oster"},
-    {nombre:"Tramontina",value:"Tramontina"},
-    {nombre:"Record",value:"Record"},
-    {nombre:"Bosh",value:"Bosh"},
-    {nombre:"T-Fal",value:"T-Fal"},
-    {nombre:"Hervidor",value:"Hervidor"}
+  marcas = [
+    { nombre: 'Oster', value: 'Oster' },
+    { nombre: 'Tramontina', value: 'Tramontina' },
+    { nombre: 'Record', value: 'Record' },
+    { nombre: 'Bosh', value: 'Bosh' },
+    { nombre: 'T-Fal', value: 'T-Fal' },
+    { nombre: 'Hervidor', value: 'Hervidor' }
   ];
   // date = new FormControl(new Date());
   // serializedDate = new FormControl((new Date()).toISOString());
@@ -69,24 +69,24 @@ export class NewProductoComponent implements OnInit {
   public imagenTemp: any;
 
   constructor(private _productoService: ProductoService,
-    private _proveedorService:ProveedorService,
+    private _proveedorService: ProveedorService,
     private _userService: UserService,
     private _route: ActivatedRoute,
     private _router: Router) {
     this.url = GLOBAL.url;
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
-    this.producto = new Producto('',null,null,null,null,null,'','','','','','','','','','',this.identity._id,'');
+    this.producto = new Producto('', null, null, null, null, null, '', '', '', '', '', '', '', '', '', '', this.identity._id, '');
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.getProveedores();
   }
 
 
-public proveedores:Proveedor[]=[];
+  public proveedores: Proveedor[] = [];
   getProveedores() {
-    this._proveedorService.getProveedores(this.token,this.identity._id).subscribe(
+    this._proveedorService.getProveedores(this.token, this.identity._id).subscribe(
       response => {
         if (!response.proveedores) {
 
@@ -115,11 +115,11 @@ public proveedores:Proveedor[]=[];
             this.filesToUpload).then(
               (result) => {
                 swal('Producto registrado', 'Datos guardados correctamente', 'success')
-                .then((prodCreate)=>{
-                  if(prodCreate){
-                    this._router.navigate(['/adm-producto']);
-                  }
-                });
+                  .then((prodCreate) => {
+                    if (prodCreate) {
+                      this._router.navigate(['/adm-producto']);
+                    }
+                  });
               },
               (error) => {
                 console.log(error);

@@ -23,8 +23,8 @@ export class ShowProductoComponent implements OnInit,OnDestroy {
   public producto:any={};
   private ngUnsubscribe: Subject<boolean> = new Subject();
   public comentarios=[
-    {ruta:"assets/images/productos/foto1.jpg",name:"Manuela Cervantes",email:"manuela@gmail.com",fecha:"27 febrero 2019",descripcion:"Compre el juego de cocina hace poco, pero la calidad es increible y ha sido la mejor elección."},
-    {ruta:"assets/images/productos/foto2.jpg",name:"Andrea Sotomayo",email:"andrea@gmail.com",fecha:"12 mayo 2019",descripcion:"Decidi aprovechar la oferta y el hermoso diseño me enamoro, soy la envidia entre mis amigas."}
+    {ruta:"assets/images/productos/foto1.jpg",name:"Manuela Cervantes",email:"manuela@gmail.com",fecha:"27 febrero 2020",descripcion:"Compre el juego de cocina hace poco, pero la calidad es increible y ha sido la mejor elección."},
+    {ruta:"assets/images/productos/foto2.jpg",name:"Andrea Sotomayo",email:"andrea@gmail.com",fecha:"12 mayo 2020",descripcion:"Decidi aprovechar la oferta y el hermoso diseño me enamoro, soy la envidia entre mis amigas."}
   ]
   constructor(private router:Router,private route:ActivatedRoute, private fb:FormBuilder,public maestroService:MaestroService,private productoService:ProductoService) { 
    this.newForm();
@@ -128,7 +128,7 @@ export class ShowProductoComponent implements OnInit,OnDestroy {
     this.comentarioForm = this.fb.group({
       name:["",Validators.required],
       email:["",Validators.required],
-      fecha:["20 de junio 2019"],
+      fecha:["20 de junio 2020"],
       descripcion:["",Validators.required]
     });
   }

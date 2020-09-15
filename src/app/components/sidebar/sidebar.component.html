@@ -40,19 +40,19 @@
           <li class="header-menu" *ngIf="identity.role=='ROLE_ADMIN'">
             <span>Proveedor</span>
           </li>
-          <li class="" *ngIf="identity.role=='ROLE_ADMIN'">
+      <!--     <li class="option" *ngIf="identity.role=='ROLE_ADMIN'">
             <a class="res_add" [routerLink]="['/list-proveedor']">
               <i class="fa fa-dashboard"></i>
               <span>Inicio</span>
             </a>
-          </li>
-          <li class="" *ngIf="identity.role=='ROLE_ADMIN'">
+          </li> -->
+          <li class="option" *ngIf="identity.role=='ROLE_ADMIN'">
             <a class="res_add" [routerLink]="['/list-proveedor']">
               <i class="fa fa-list" aria-hidden="true"></i>
               <span>Proveedores</span>
             </a>
           </li>
-          <li class="" *ngIf="identity.role=='ROLE_ADMIN'">
+          <li class="option" *ngIf="identity.role=='ROLE_ADMIN'">
             <a class="res_add" [routerLink]="['/new-proveedor']">
               <i class="fa fa-plus"></i>
               <span>Nuevo Proveedor</span>
@@ -64,7 +64,7 @@
               <span>Mantenimiento</span>
             </a>
           </li>
-          <!-- <li class="">
+          <!-- <li class="option">
                         <a >
                             <i class="fa fa-globe"></i>
                             <span>Maps</span>
@@ -140,3 +140,4 @@
     <router-outlet></router-outlet>
   </main>
 </div>
+

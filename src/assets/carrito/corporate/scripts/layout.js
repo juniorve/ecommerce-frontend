@@ -138,7 +138,7 @@ var Layout = function () {
         }); 
 
         // close search box on body click
-        if($('.search-btn').size() != 0) {
+        if($('.search-btn').length != 0) {
             $('.search-box, .search-btn').on('click', function(e){
                 e.stopPropagation();
             });
@@ -198,9 +198,9 @@ var Layout = function () {
             return;
         }
         var test = $("input[type=checkbox]:not(.toggle), input[type=radio]:not(.toggle, .star)");
-        if (test.size() > 0) {
+        if (test.length > 0) {
             test.each(function () {
-                    if ($(this).parents(".checker").size() == 0) {
+                    if ($(this).parents(".checker").length == 0) {
                         $(this).show();
                         $(this).uniform();
                     }
@@ -215,7 +215,7 @@ var Layout = function () {
         
         jQuery(".fancybox-fast-view").fancybox();
 
-        if (jQuery(".fancybox-button").size() > 0) {            
+        if (jQuery(".fancybox-button").length > 0) {            
             jQuery(".fancybox-button").fancybox({
                 groupAttr: 'data-rel',
                 prevEffect: 'none',
@@ -316,7 +316,7 @@ var Layout = function () {
         initUniform: function (els) {
             if (els) {
                 jQuery(els).each(function () {
-                        if ($(this).parents(".checker").size() == 0) {
+                        if ($(this).parents(".checker").length == 0) {
                             $(this).show();
                             $(this).uniform();
                         }
@@ -470,7 +470,7 @@ var Layout = function () {
 
         // wrapper function to scroll(focus) to an element
         scrollTo: function (el, offeset) {
-            var pos = (el && el.size() > 0) ? el.offset().top : 0;
+            var pos = (el && el.length > 0) ? el.offset().top : 0;
             if (el) {
                 if ($('body').hasClass('page-header-fixed')) {
                     pos = pos - $('.header').height(); 

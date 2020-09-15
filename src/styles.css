@@ -12,3 +12,6 @@ header{
         overflow-y: auto !important;
         overflow-x: hidden !important;
       }
+input{
+    border:none !important;
+}

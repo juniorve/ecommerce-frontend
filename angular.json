@@ -36,7 +36,9 @@
               "src/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js",
               "src/assets/plugins/easing/easing.js",
               "src/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js",
-              "src/assets/shop/js/single_custom.js"
+              "src/assets/shop/js/single_custom.js",
+              "src/assets/css/js//jquery.mCustomScrollbar.concat.min.js",
+              "src/assets/css/js/custom.js"
             ]
           },
           "configurations": {
