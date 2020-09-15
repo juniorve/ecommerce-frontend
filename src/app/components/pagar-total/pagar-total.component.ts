@@ -70,17 +70,6 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
       createOrderOnClient: (data) => <ICreateOrderRequest>{
         intent: 'CAPTURE',
         purchase_units: [{
-          /*    amount: {
-               currency_code: 'USD',
-               value: '9.99',
-               breakdown: {
-                 item_total: {
-                   currency_code: 'USD',
-                   value: '9.99'
-                 }
-               }
-             }, */
-
           amount: {
             currency_code: 'USD',
             value: this.maestroService.sumaTotal.toFixed(2).toString(),
@@ -102,15 +91,6 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
               }
             };
           })
-          /*    items: [{
-               name: 'OLLA',
-               quantity: '1',
-               category: 'DIGITAL_GOODS',
-               unit_amount: {
-                 currency_code: 'USD',
-                 value: '9.99',
-               },
-             }] */
         }]
       },
       advanced: {
@@ -187,7 +167,7 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
                                 console.log(response);
                                 if (i == this.maestroService.carritoProd.length - 1) {
                                   this.maestroService.clean();
-                                   this._router.navigate(['/principal']);
+                                  this._router.navigate(['/principal']);
                                   // this.bandera = true;
                                 }
                               },
@@ -350,7 +330,7 @@ export class PagarTotalComponent implements OnInit, OnDestroy {
     // var pdf = new jsPDF();
     /*   var img = new Image;
            doc.addImage(this, 'PNG', 180, 5, 240, 90, 'center');
-      img.crossOrigin = '';  
+      img.crossOrigin = '';
       img.src = 'assets/img/logo.png';
    */
     // let imgData = 'data:image/jpeg;base64,' + this.datoEmpresa['logo'];
