@@ -9,15 +9,12 @@ export class Producto {
       public material:string,
       public envioInternacional:string,
       public descripcion:string,
-      public descripcion1:string,
-      public descripcion2:string,
-      public descripcion3:string,
       public tipo:string,
       public imagen:string,
       public color: string,
       public marca: string,
       public user: string,
-      public proveedor: string
+      public proveedor: any
     ){}
   }
   

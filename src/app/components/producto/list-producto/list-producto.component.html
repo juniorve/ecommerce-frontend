@@ -16,17 +16,17 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-md-4 image">
-            <img class="img-fluid img-prop" (click)="upProducto(producto._id)"
+            <img class="img-fluid img-prop"
               src="{{url+'get-img-producto/'+producto.imagen}}">
           </div>
           <div class="col-md-8 texto ">
-            <div class="col-md-8"><a class="enlace" (click)="upProveedor(proveedor._id)"><strong>
+            <div class="col-md-8"><a class="enlace"><strong>
                   <p class="desafio">{{producto.nombre}}</p>
                 </strong></a></div>
             <div class="col-md-8"><label for="" class="p-text">Descripción:</label> <label class="text-2">
                 {{producto.descripcion}}</label></div>
             <div class="col-md-8"><label for="" class="p-text">Marca:</label> <label class="text-2">
-                {{producto.marca}}</label></div>
+                {{producto.proveedor.nombre}}</label></div>
             <div class="col-md-8"><label for="" class="p-text">Material:</label> <label class="text-2">
                 {{producto.material}}</label></div>
             <div class="col-md-8"> <label for="" class="p-text">Precio venta:</label> <label class="text-2">

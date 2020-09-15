@@ -21,12 +21,23 @@
             </mat-form-field>
           </div>
 
-          <div class="col-xs-12 col-md-6">
+    <!--       <div class="col-xs-12 col-md-6">
             <mat-form-field class="texto" appearance="outline">
               <mat-label>Seleccione marca del producto</mat-label>
               <mat-select name="marca" [(ngModel)]="producto.marca" required>
                 <mat-option *ngFor="let marca of marcas" [value]="marca.value">
                   {{marca.nombre}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div> -->
+
+          <div class="col-xs-12 col-md-6">
+            <mat-form-field class="texto" appearance="outline">
+              <mat-label>Seleccione Proveedor</mat-label>
+              <mat-select name="proveedor" [(ngModel)]="producto.proveedor" required>
+                <mat-option *ngFor="let proveedor of proveedores" [value]="proveedor._id">
+                  {{proveedor.nombre}}
                 </mat-option>
               </mat-select>
               <!-- <mat-error *ngIf="tipoControl.hasError('required')">No ha seleccionado envio de producto</mat-error> -->
@@ -107,33 +118,6 @@
             </mat-form-field>
           </div>
 
-          <div class="col-xs-12 col-md-12 tip_ev">
-          <mat-form-field class="texto" appearance="outline">
-              <mat-label>Descripción1 del producto</mat-label>
-              <textarea matInput #descripcion1="ngModel" name="descripcion1" [(ngModel)]="producto.descripcion1"
-                rows="4" #descripcion1 maxlength="400" autocomplete="off" required></textarea>
-              <mat-hint align="end">{{descripcion1.value.length}} /400</mat-hint>
-            </mat-form-field>
-          </div>
-
-          <div class="col-xs-12 col-md-12 tip_ev">
-          <mat-form-field class="texto" appearance="outline">
-              <mat-label>Descripción2 del producto</mat-label>
-              <textarea matInput #descripcion2="ngModel" name="descripcion2" [(ngModel)]="producto.descripcion2"
-                rows="4" #descripcion2 maxlength="400" autocomplete="off" required></textarea>
-              <mat-hint align="end">{{descripcion2.value.length}} /400</mat-hint>
-            </mat-form-field>
-          </div>
-
-          <div class="col-xs-12 col-md-12 tip_ev">
-          <mat-form-field class="texto" appearance="outline">
-              <mat-label>Descripción3 del producto</mat-label>
-              <textarea matInput #descripcion3="ngModel" name="descripcion3" [(ngModel)]="producto.descripcion3"
-                rows="4" #descripcion3 maxlength="400" autocomplete="off" required></textarea>
-              <mat-hint align="end">{{descripcion3.value.length}} /400</mat-hint>
-            </mat-form-field>
-          </div>
-
      <!--      <div class="col-xs-12 col-md-12 tip_ev">
             <mat-form-field class="texto" appearance="outline">
               <mat-label>Segunda información del producto</mat-label>
@@ -152,7 +136,7 @@
             </mat-form-field>
           </div> -->
 
-          <div class="col-xs-12 col-sm-6">
+          <div class="col-xs-12 col-sm-12">
             <mat-form-field appearance="outline" class="texto">
               <mat-label>Material del Producto</mat-label>
               <input matInput #material="ngModel" name="material" [(ngModel)]="producto.material" class="form-control"
@@ -182,17 +166,7 @@
               <!-- <mat-error *ngIf="tipoControl.hasError('required')">No ha seleccionado envio de producto</mat-error> -->
             </mat-form-field>
           </div>
-          <div class="col-xs-12 col-md-6">
-            <mat-form-field class="texto" appearance="outline">
-              <mat-label>Seleccione Proveedor</mat-label>
-              <mat-select name="proveedor" [(ngModel)]="producto.proveedor" required>
-                <mat-option *ngFor="let proveedor of proveedores" [value]="proveedor._id">
-                  {{proveedor.nombre}}
-                </mat-option>
-              </mat-select>
-              <!-- <mat-error *ngIf="tipoControl.hasError('required')">No ha seleccionado envio de producto</mat-error> -->
-            </mat-form-field>
-          </div>
+       
 
         <div class="container">
           <div class="row">

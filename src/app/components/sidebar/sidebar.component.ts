@@ -1,10 +1,7 @@
 import { UserService } from './../../services/user.service';
-import { Component, OnInit, Output, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ArgumentType } from '@angular/compiler/src/core';
-import { EventEmitter } from 'protractor';
-
+import { Router, ActivatedRoute } from '@angular/router';
 declare var $: any;
 declare var jQuery: any;
 

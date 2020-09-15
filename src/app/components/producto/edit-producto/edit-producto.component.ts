@@ -80,7 +80,7 @@ public proveedores:Proveedor[]=[];
     this.url = GLOBAL.url;
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
-    this.producto = new Producto('',null,null,null,null,null,'','','','','','','','','','',this.identity._id,'');
+    this.producto = new Producto('',null,null,null,null,null,'','','','','','','',this.identity._id,'');
   }
 
   ngOnInit() { 

@@ -15,7 +15,7 @@
 				[reorderableColumns]="true"
 				[style]="{'overflow-x':'auto !important','max-width':'100% !important','padding':'10px'}" #dt
 				[value]="productos" [rows]="10" [responsive]="true" [paginator]="true" selectionMode="single"
-				[(selection)]="selectedPersona" (onRowSelect)="onRowSelect($event)" >
+			 >
 				<p-column
 					[style]="{'white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px','text-align':'center','width':'8%'}"
 					field="" header="Número" [sortable]="true" [filter]="true" filterPlaceholder="Filtrar por número">
@@ -29,15 +29,15 @@
 				<p-column
 					[style]="{'white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
 					field="color" header="Color" [sortable]="true" [filter]="true"
-					filterPlaceholder="Filtrar por numero doc."></p-column>
+					filterPlaceholder="filtrar"></p-column>
 				<p-column
 					[style]="{'white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
-					field="marca" header="Marca" [sortable]="true" [filter]="true"
-					filterPlaceholder="Filtrar por numero doc."></p-column>
+					field="proveedor.nombre" header="Marca" [sortable]="true" [filter]="true"
+					filterPlaceholder="filtrar"></p-column>
 				<p-column
 					[style]="{'white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
 					field="material" header="Material" [sortable]="true" [filter]="true"
-					filterPlaceholder="Filtrar por numero doc."></p-column>
+					filterPlaceholder="filtrar"></p-column>
 
 				<p-column
 					[style]="{'white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
@@ -60,15 +60,15 @@
 				<p-column
 					[style]="{'white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
 					field="stock_minimo" header="Stock minimo" [sortable]="true" [filter]="true"
-					filterPlaceholder="Filtrar por numero doc."></p-column>
+					filterPlaceholder="filtrar"></p-column>
 				<p-column
 					[style]="{'white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
 					field="stock_maximo" header="Stock máximo" [sortable]="true" [filter]="true"
-					filterPlaceholder="Filtrar por numero doc."></p-column>
+					filterPlaceholder="filtrar"></p-column>
 				<p-column
 					[style]="{'white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px'}"
 					field="cantidad" header="Cantidad" [sortable]="true" [filter]="true"
-					filterPlaceholder="Filtrar por numero doc."></p-column>
+					filterPlaceholder="filtrar"></p-column>
 
 				<p-column [bodyStyle]="false"
 					[style]="{'white-space': 'nowrap !important', 'overflow': 'hidden', 'text-overflow': 'ellipsis', 'padding': '5px','margin': '-5px','font-family': 'Arimo, sans-serif','font-size': '12px','text-align':'center'}"
